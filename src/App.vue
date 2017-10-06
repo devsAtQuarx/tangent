@@ -1,18 +1,36 @@
 <template>
   <div id="app">
     <header>
-      <span>Vue.js PWA</span>
+      <span v-show="isLoggedIn" @click="gSignOut">LogOut</span>
     </header>
     <main>
-      <img src="./assets/logo.png" alt="Vue.js PWA">
       <router-view></router-view>
     </main>
   </div>
 </template>
 
 <script>
+import firebase from 'firebase'
+import {mapGetters} from 'vuex'
+
 export default {
-  name: 'app'
+  name: 'app',
+  methods:{
+    gSignOut(){
+      firebase.auth().signOut().then(function() {
+          // Sign-out successful.
+          console.log("Sucessfully Logged Out")
+      }).catch(function(error) {
+          // An error happened.
+          console.log("Failed to LogOut", error)
+      });
+    }
+  },
+  computed:{
+      ...mapGetters([
+          'isLoggedIn'
+      ])
+  }
 }
 </script>
 
