@@ -4,6 +4,7 @@
 
         <input v-model="principalEmail">
         <button @click="savePrincipalEmail">save</button>
+
     </div>
 </template>
 <script>
@@ -16,6 +17,10 @@
         methods:{
             savePrincipalEmail(){
                 let vm = this
+                let principalEmailInDb = vm.principalEmail
+                while(principalEmailInDb.indexOf('.') != -1)
+                    principalEmailInDb = principalEmailInDb.replace(".","replacedDotHere")
+                console.log(principalEmailInDb)
 
                 //bind
                 let tmpObj = {
@@ -24,10 +29,10 @@
                 }
 
                 if(this.validateEmail(this.principalEmail)){
-                    this.$store.state.db.db.ref('school/'+ this.$route.params.id + '/createdAccounts/principal/')
+                    this.$store.state.db.db.ref('school/'+ this.$route.params.id + '/createdAccounts/principal/' + principalEmailInDb)
                         .set(tmpObj) //set
                         .then(function(snapPrincipalEmail){
-                            vm.$store.state.db.db.ref('createdAccounts/principal/')
+                            vm.$store.state.db.db.ref('createdAccounts/principal/' + principalEmailInDb)
                                 .set(tmpObj) //set
                                 .then(function (snapPrincipalEmail) {
                                     alert('saved email in db !')
