@@ -1,0 +1,137 @@
+[debug] [2017-10-06T18:37:12.376Z] ----------------------------------------------------------------------
+[debug] [2017-10-06T18:37:12.379Z] Command:       /usr/local/bin/node /usr/local/bin/firebase deploy
+[debug] [2017-10-06T18:37:12.380Z] CLI Version:   3.11.0
+[debug] [2017-10-06T18:37:12.380Z] Platform:      darwin
+[debug] [2017-10-06T18:37:12.380Z] Node Version:  v6.11.3
+[debug] [2017-10-06T18:37:12.380Z] Time:          Sat Oct 07 2017 00:07:12 GMT+0530 (IST)
+[debug] [2017-10-06T18:37:12.381Z] ----------------------------------------------------------------------
+[debug] 
+[debug] [2017-10-06T18:37:12.395Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2017-10-06T18:37:12.395Z] > authorizing via signed-in user
+[debug] [2017-10-06T18:37:12.398Z] >>> HTTP REQUEST GET https://admin.firebase.com/v1/projects/tangent-schools  
+ Sat Oct 07 2017 00:07:12 GMT+0530 (IST)
+[debug] [2017-10-06T18:37:13.732Z] <<< HTTP RESPONSE 200
+[debug] [2017-10-06T18:37:13.734Z] >>> HTTP REQUEST GET https://admin.firebase.com/v1/database/tangent-schools/tokens  
+ Sat Oct 07 2017 00:07:13 GMT+0530 (IST)
+[debug] [2017-10-06T18:37:14.766Z] <<< HTTP RESPONSE 200
+[info] 
+[info] === Deploying to 'tangent-schools'...
+[info] 
+[info] i  deploying database, functions, hosting
+[info] ✔  database: rules ready to deploy.
+[debug] [2017-10-06T18:37:17.520Z] > [functions] package.json contents: {
+  "name": "functions",
+  "description": "Cloud Functions for Firebase",
+  "dependencies": {
+    "firebase-admin": "~5.2.1",
+    "firebase-functions": "^0.6.2"
+  },
+  "private": true
+}
+[info] i  functions: ensuring necessary APIs are enabled...
+[info] i  runtimeconfig: ensuring necessary APIs are enabled...
+[debug] [2017-10-06T18:37:17.522Z] >>> HTTP REQUEST GET https://servicemanagement.googleapis.com/v1/services/cloudfunctions.googleapis.com/projectSettings/tangent-schools?view=CONSUMER_VIEW  
+ Sat Oct 07 2017 00:07:17 GMT+0530 (IST)
+[debug] [2017-10-06T18:37:17.522Z] >>> HTTP REQUEST GET https://servicemanagement.googleapis.com/v1/services/runtimeconfig.googleapis.com/projectSettings/tangent-schools?view=CONSUMER_VIEW  
+ Sat Oct 07 2017 00:07:17 GMT+0530 (IST)
+[debug] [2017-10-06T18:37:19.255Z] <<< HTTP RESPONSE 200
+[info] ✔  runtimeconfig: all necessary APIs are enabled
+[debug] [2017-10-06T18:37:19.257Z] <<< HTTP RESPONSE 200
+[warn] ⚠  functions: missing necessary APIs. Enabling now...
+[debug] [2017-10-06T18:37:19.259Z] >>> HTTP REQUEST PATCH https://servicemanagement.googleapis.com/v1/services/cloudfunctions.googleapis.com/projectSettings/tangent-schools?updateMask=usageSettings { usageSettings: { consumerEnableStatus: 'ENABLED' } } 
+ Sat Oct 07 2017 00:07:19 GMT+0530 (IST)
+[debug] [2017-10-06T18:37:21.608Z] <<< HTTP RESPONSE 200
+[debug] [2017-10-06T18:37:31.615Z] >>> HTTP REQUEST GET https://servicemanagement.googleapis.com/v1/services/cloudfunctions.googleapis.com/projectSettings/tangent-schools?view=CONSUMER_VIEW  
+ Sat Oct 07 2017 00:07:31 GMT+0530 (IST)
+[debug] [2017-10-06T18:37:33.382Z] <<< HTTP RESPONSE 200
+[info] i  functions: waiting for APIs to activate...
+[debug] [2017-10-06T18:37:43.406Z] >>> HTTP REQUEST GET https://servicemanagement.googleapis.com/v1/services/cloudfunctions.googleapis.com/projectSettings/tangent-schools?view=CONSUMER_VIEW  
+ Sat Oct 07 2017 00:07:43 GMT+0530 (IST)
+[debug] [2017-10-06T18:37:45.158Z] <<< HTTP RESPONSE 200
+[info] i  functions: waiting for APIs to activate...
+[debug] [2017-10-06T18:37:55.163Z] >>> HTTP REQUEST GET https://servicemanagement.googleapis.com/v1/services/cloudfunctions.googleapis.com/projectSettings/tangent-schools?view=CONSUMER_VIEW  
+ Sat Oct 07 2017 00:07:55 GMT+0530 (IST)
+[debug] [2017-10-06T18:37:56.843Z] <<< HTTP RESPONSE 200
+[info] i  functions: waiting for APIs to activate...
+[debug] [2017-10-06T18:38:06.848Z] >>> HTTP REQUEST GET https://servicemanagement.googleapis.com/v1/services/cloudfunctions.googleapis.com/projectSettings/tangent-schools?view=CONSUMER_VIEW  
+ Sat Oct 07 2017 00:08:06 GMT+0530 (IST)
+[debug] [2017-10-06T18:38:08.534Z] <<< HTTP RESPONSE 200
+[info] i  functions: waiting for APIs to activate...
+[debug] [2017-10-06T18:38:18.537Z] >>> HTTP REQUEST GET https://servicemanagement.googleapis.com/v1/services/cloudfunctions.googleapis.com/projectSettings/tangent-schools?view=CONSUMER_VIEW  
+ Sat Oct 07 2017 00:08:18 GMT+0530 (IST)
+[debug] [2017-10-06T18:38:32.586Z] Error: connect ENETUNREACH 216.58.197.74:443
+    at Object.exports._errnoException (util.js:1020:11)
+    at exports._exceptionWithHostPort (util.js:1043:20)
+    at TCPConnectWrap.afterConnect [as oncomplete] (net.js:1086:14)
+[error] 
+[error] Error: Server Error. connect ENETUNREACH 216.58.197.74:443
+[debug] [2017-10-06T18:38:42.242Z] ----------------------------------------------------------------------
+[debug] [2017-10-06T18:38:42.245Z] Command:       /usr/local/bin/node /usr/local/bin/firebase deploy
+[debug] [2017-10-06T18:38:42.246Z] CLI Version:   3.11.0
+[debug] [2017-10-06T18:38:42.246Z] Platform:      darwin
+[debug] [2017-10-06T18:38:42.246Z] Node Version:  v6.11.3
+[debug] [2017-10-06T18:38:42.247Z] Time:          Sat Oct 07 2017 00:08:42 GMT+0530 (IST)
+[debug] [2017-10-06T18:38:42.247Z] ----------------------------------------------------------------------
+[debug] 
+[debug] [2017-10-06T18:38:42.260Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2017-10-06T18:38:42.260Z] > authorizing via signed-in user
+[debug] [2017-10-06T18:38:42.263Z] >>> HTTP REQUEST GET https://admin.firebase.com/v1/projects/tangent-schools  
+ Sat Oct 07 2017 00:08:42 GMT+0530 (IST)
+[debug] [2017-10-06T18:38:49.339Z] Error: connect ENETUNREACH 104.197.85.31:443
+    at Object.exports._errnoException (util.js:1020:11)
+    at exports._exceptionWithHostPort (util.js:1043:20)
+    at TCPConnectWrap.afterConnect [as oncomplete] (net.js:1086:14)
+[error] 
+[error] Error: Server Error. connect ENETUNREACH 104.197.85.31:443
+[debug] [2017-10-06T18:46:50.763Z] ----------------------------------------------------------------------
+[debug] [2017-10-06T18:46:50.766Z] Command:       /usr/local/bin/node /usr/local/bin/firebase deploy
+[debug] [2017-10-06T18:46:50.767Z] CLI Version:   3.11.0
+[debug] [2017-10-06T18:46:50.767Z] Platform:      darwin
+[debug] [2017-10-06T18:46:50.767Z] Node Version:  v6.11.3
+[debug] [2017-10-06T18:46:50.768Z] Time:          Sat Oct 07 2017 00:16:50 GMT+0530 (IST)
+[debug] [2017-10-06T18:46:50.768Z] ----------------------------------------------------------------------
+[debug] 
+[debug] [2017-10-06T18:46:50.784Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2017-10-06T18:46:50.784Z] > authorizing via signed-in user
+[debug] [2017-10-06T18:46:50.786Z] >>> HTTP REQUEST GET https://admin.firebase.com/v1/projects/tangent-schools  
+ Sat Oct 07 2017 00:16:50 GMT+0530 (IST)
+[debug] [2017-10-06T18:46:52.670Z] <<< HTTP RESPONSE 200
+[debug] [2017-10-06T18:46:52.672Z] >>> HTTP REQUEST GET https://admin.firebase.com/v1/database/tangent-schools/tokens  
+ Sat Oct 07 2017 00:16:52 GMT+0530 (IST)
+[debug] [2017-10-06T18:46:53.927Z] <<< HTTP RESPONSE 200
+[info] 
+[info] === Deploying to 'tangent-schools'...
+[info] 
+[info] i  deploying database, functions, hosting
+[info] ✔  database: rules ready to deploy.
+[debug] [2017-10-06T18:46:56.443Z] > [functions] package.json contents: {
+  "name": "functions",
+  "description": "Cloud Functions for Firebase",
+  "dependencies": {
+    "firebase-admin": "~5.2.1",
+    "firebase-functions": "^0.6.2"
+  },
+  "private": true
+}
+[info] i  functions: ensuring necessary APIs are enabled...
+[info] i  runtimeconfig: ensuring necessary APIs are enabled...
+[debug] [2017-10-06T18:46:56.447Z] >>> HTTP REQUEST GET https://servicemanagement.googleapis.com/v1/services/cloudfunctions.googleapis.com/projectSettings/tangent-schools?view=CONSUMER_VIEW  
+ Sat Oct 07 2017 00:16:56 GMT+0530 (IST)
+[debug] [2017-10-06T18:46:56.447Z] >>> HTTP REQUEST GET https://servicemanagement.googleapis.com/v1/services/runtimeconfig.googleapis.com/projectSettings/tangent-schools?view=CONSUMER_VIEW  
+ Sat Oct 07 2017 00:16:56 GMT+0530 (IST)
+[debug] [2017-10-06T18:46:58.256Z] <<< HTTP RESPONSE 200
+[info] ✔  runtimeconfig: all necessary APIs are enabled
+[debug] [2017-10-06T18:46:58.288Z] <<< HTTP RESPONSE 200
+[info] ✔  functions: all necessary APIs are enabled
+[debug] [2017-10-06T18:46:58.290Z] >>> HTTP REQUEST GET https://appengine.googleapis.com/v1/apps/tangent-schools  
+ Sat Oct 07 2017 00:16:58 GMT+0530 (IST)
+[debug] [2017-10-06T18:46:58.291Z] >>> HTTP REQUEST GET https://apikeys.googleapis.com/v1/projects/tangent-schools/apiKeys  
+ Sat Oct 07 2017 00:16:58 GMT+0530 (IST)
+[info] 
+
+There was an issue deploying your functions. Verify that your project has a Google App Engine instance setup at https://console.cloud.google.com/appengine and try again. If this issue persists, please contact support.
+[debug] [2017-10-06T18:47:27.549Z] Error: read ETIMEDOUT
+    at exports._errnoException (util.js:1020:11)
+    at TLSWrap.onread (net.js:568:26)
+[error] 
+[error] Error: Server Error. read ETIMEDOUT
