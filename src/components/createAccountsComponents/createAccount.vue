@@ -1,38 +1,39 @@
 <template>
     <div>
-        <h1>create principal's account</h1> {{$route.params}}
+        <h1>create {{$route.params.whosAccount}} account</h1> {{$route.params}}
 
-        <input v-model="principalEmail">
-        <button @click="savePrincipalEmail">save</button>
-
+        <input v-model="email">
+        <button @click="saveEmail">save</button>
     </div>
 </template>
+
 <script>
     export default {
         data(){
-          return{
-              principalEmail: ''
-          }
+            return{
+                email: ''
+            }
         },
         methods:{
-            savePrincipalEmail(){
+            saveEmail(){
                 let vm = this
-                let principalEmailInDb = vm.principalEmail
-                while(principalEmailInDb.indexOf('.') != -1)
-                    principalEmailInDb = principalEmailInDb.replace(".","replacedDotHere")
-                console.log(principalEmailInDb)
+                let emailInDb = vm.email
+                while(emailInDb.indexOf('.') != -1)
+                    emailInDb = emailInDb.replace(".","replacedDotHere")
 
                 //bind
                 let tmpObj = {
-                    email : vm.principalEmail,
-                    schoolId : vm.$route.params.id
+                    email : vm.email,
+                    schoolId : vm.$route.params.schoolId
                 }
 
-                if(this.validateEmail(this.principalEmail)){
-                    this.$store.state.db.db.ref('school/'+ this.$route.params.id + '/createdAccounts/principal/' + principalEmailInDb)
+                if(this.validateEmail(this.email)){
+                    this.$store.state.db.db.ref('school/'+ this.$route.params.schoolId + '/createdAccounts/' +
+                        this.$route.params.whosAccount + '/' + emailInDb)
                         .set(tmpObj) //set
                         .then(function(snapPrincipalEmail){
-                            vm.$store.state.db.db.ref('createdAccounts/principal/' + principalEmailInDb)
+                            vm.$store.state.db.db.ref('createdAccounts/' + vm.$route.params.whosAccount +
+                                '/' + emailInDb)
                                 .set(tmpObj) //set
                                 .then(function (snapPrincipalEmail) {
                                     alert('saved email in db !')

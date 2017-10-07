@@ -1,6 +1,6 @@
 <template>
     <div>
-        <h1>create accounts</h1> - {{$route.params.id}}
+        <h1>create accounts</h1> - {{$route.params}}
         <br>
 
         <!-- options -->
@@ -19,12 +19,27 @@
 </template>
 <script>
     export default {
+        data(){
+            return {
+                goWhere : ''
+            }
+        },
         methods:{
             goToCreateStudentAccount(){
-                this.$router.push({name: 'createStudentAccount'})
+                this.goWhere = 'student'
+                this.goTo()
             },
             goToCreatePrincipalAccount(){
-                this.$router.push({name: 'createPrincipalAccount'})
+                this.goWhere = 'principal'
+                this.goTo()
+            },
+            goTo(){
+                this.$router.push({
+                    name: 'createAccount',
+                    params:{
+                        whosAccount: this.goWhere
+                    }
+                })
             }
         }
     }

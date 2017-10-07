@@ -1,7 +1,8 @@
 const state = {
     user : {},
     isLoggedIn : false,
-    whoLoggedIn : ''
+    whoLoggedIn : '',
+    schoolId : ''
 }
 
 const getters = {
@@ -13,6 +14,9 @@ const getters = {
     },
     whoLoggedIn:state =>{
         return state.whoLoggedIn
+    },
+    schoolId:state =>{
+        return state.schoolId
     }
 }
 
