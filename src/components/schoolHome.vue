@@ -4,9 +4,27 @@
         <br>
 
         <!--options--><!-- lock options till uid is loaded -->
-        <span v-show="showCreateAccounts" @click="goToCreateAccounts">create accounts</span>
+        <!-- school option -->
+        <span v-show="showSchoolOptions">
+            <span @click="goToCreateAccounts">create accounts</span>
+        </span>
 
         <br>
+
+        <!-- teacher option -->
+        <span v-show="showTeacherOptions">
+            <span @click="goToSetAttendance">set attendance</span>
+        </span>
+
+        <!-- principal option -->
+        <span v-show="showPrincipalOptions">
+            <span @click="goToShowClassAttendance">show class attendance</span>
+        </span>
+
+        <!-- stduent options -->
+        <span v-show="showStudentOptions">
+            <span @click="goToParticularStudentAttendance">show paticular student attendance</span>
+        </span>
 
         <div>
             {{user}}
@@ -22,8 +40,26 @@
             ...mapGetters([
                 'user'
             ]),
-            showCreateAccounts(){
+            showSchoolOptions(){
                 if(this.$route.params.whoIsLoggedIn == 'school')
+                    return true
+                else
+                    return false
+            },
+            showTeacherOptions(){
+                if(this.$route.params.whoIsLoggedIn == 'teacher')
+                    return true
+                else
+                    return false
+            },
+            showPrincipalOptions(){
+                if(this.$route.params.whoIsLoggedIn == 'principal')
+                    return true
+                else
+                    return false
+            },
+            showStudentOptions(){
+                if(this.$route.params.whoIsLoggedIn == 'student')
                     return true
                 else
                     return false
@@ -32,6 +68,15 @@
         methods:{
             goToCreateAccounts(){
                 this.$router.push('/createAccounts/' + this.$route.params.schoolId + '/' + 'principal')
+            },
+            goToSetAttendance(){
+                this.$router.push({name:'setAttendance'})
+            },
+            goToShowClassAttendance(){
+                this.$router.push({name:'showClassAttendance'})
+            },
+            goToParticularStudentAttendance(){
+                this.$router.push({name:'showParticularStudentAttendance'})
             }
         },
         created(){

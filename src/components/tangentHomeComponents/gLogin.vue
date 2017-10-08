@@ -2,8 +2,13 @@
     <div>
         <h1>gLogin</h1> {{$route.params}}
 
+
         <div v-if="!isLoggedIn">loading...</div>
-        <div v-else>{{user}}</div>
+        <div v-else>
+            <div @click="goPrevious()"><-</div>
+            <div @click="goNext()">-></div>
+            {{user}}
+        </div>
     </div>
 </template>
 
@@ -23,7 +28,7 @@
                 //console.log(this.$route.params)
                 let  userEmail = vm.$store.state.auth.user.email
                 while(userEmail.indexOf('.') != -1)
-                    userEmail = userEmail.replace(".","replacedDotHere")
+                    userEmail = userEmail.replace(".","replaceddothere")
 
                 if(this.$route.params.whoIsLoggedIn == 'school') { //schoolLoggedIn /**************
                     //this.$store.state.auth.schoolId = this.$store.state.auth.user.uid
@@ -81,6 +86,14 @@
                     // An error happened.
                     console.log("Failed to LogOut", error)
                 });
+            },
+            goNext(){
+                if(this.$store.state.auth.isLoggedIn){
+                    this.checkIfUidIsLoaded()
+                }
+            },
+            goPrevious(){
+                this.$router.push({name:'tangentHome'})
             }
         },
         computed:{
