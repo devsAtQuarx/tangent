@@ -7,6 +7,7 @@
         <!-- school option -->
         <span v-show="showSchoolOptions">
             <span @click="goToCreateAccounts">create accounts</span>
+            <span @click="goToUploadBooks" >upload books</span>
         </span>
 
         <br>
@@ -24,6 +25,7 @@
         <!-- stduent options -->
         <span v-show="showStudentOptions">
             <span @click="goToParticularStudentAttendance">show paticular student attendance</span>
+            <span @click="goToShowBooks">show books</span>
         </span>
 
         <div>
@@ -77,6 +79,12 @@
             },
             goToParticularStudentAttendance(){
                 this.$router.push({name:'showParticularStudentAttendance'})
+            },
+            goToUploadBooks(){
+                this.$router.push({name:'uploadBooks'})
+            },
+            goToShowBooks(){
+                this.$router.push({name:'showBooks'})
             }
         },
         created(){

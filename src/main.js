@@ -22,6 +22,7 @@ new Vue({
               store.state.auth.user = user
               store.state.auth.isLoggedIn = true
               store.state.db.db = firebaseApp.database()
+              store.state.db.storage = firebaseApp.storage()
 
           } else {
               console.log('Not LoggedIn')

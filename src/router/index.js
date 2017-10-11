@@ -19,7 +19,9 @@ import createAccount from '@/components/createAccountsComponents/createAccount'
 import setAttendance from '@/components/attendance/setAttendance'
 import showClassAttendance from '@/components/attendance/showClassAttendance'
 import showParticularStudentAttendance from '@/components/attendance/showParticularStudentAttendance'
-
+//library
+import showBooks from '@/components/library/showBooks'
+import uploadBooks from '@/components/library/uploadBooks'
 
 Vue.use(Router)
 
@@ -35,7 +37,9 @@ export default new Router({
     { path: '/schoolHome/:schoolId/:whoIsLoggedIn', component: schoolHome, name: 'schoolHome' , children:[
         { path: 'setAttendance', component: setAttendance , name: 'setAttendance'},
         { path: 'showClassAttendance', component: showClassAttendance , name: 'showClassAttendance'},
-        { path: 'showParticularStudentAttendance', component: showParticularStudentAttendance , name: 'showParticularStudentAttendance'}
+        { path: 'showParticularStudentAttendance', component: showParticularStudentAttendance , name: 'showParticularStudentAttendance'},
+        { path: 'showBooks' , component: showBooks , name: 'showBooks'},
+        { path: 'uploadBooks' , component : uploadBooks , name : 'uploadBooks'}
     ]},
     { path: '/createAccounts/:schoolId', component:createAccounts, children:[
         { path: ':whosAccount', name:'createAccount' ,component:createAccount}
