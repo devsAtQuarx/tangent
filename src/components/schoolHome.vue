@@ -8,6 +8,8 @@
         <span v-show="showSchoolOptions">
             <span @click="goToCreateAccounts">create accounts</span>
             <span @click="goToUploadBooks" >upload books</span>
+            <span @click="goToLibrary">library</span>
+            <span @click="goToWriteAttendance">Write Introduction</span>
         </span>
 
         <br>
@@ -84,6 +86,12 @@
                 this.$router.push({name:'uploadBooks'})
             },
             goToShowBooks(){
+                this.$router.push({name:'showBooks'})
+            },
+            goToWriteAttendance(){
+                this.$router.push({name:'writeIntroduction'})
+            },
+            goToLibrary(){
                 this.$router.push({name:'showBooks'})
             }
         },

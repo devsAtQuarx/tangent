@@ -5,6 +5,7 @@
         <input
                 class="hide_file"
                 type="file"
+                accept="application/pdf"
                 id="choose_image"
                 @change="uploadFile($event)">
         >
@@ -25,14 +26,15 @@
                 bookStd: '',
                 bookDesc: '',
                 file : '',
-                fileLink : {},
+                fileLink : '',
                 fileDownloadLink : {}
             }
         },
         methods:{
             uploadFile(e){
                 this.file = e.target.files[0]
-                console.log(this.file)
+                this.fileLink = URL.createObjectURL(event.target.files[0])
+                this.fileLink = this.fileLink.slice(this.fileLink.lastIndexOf('/')+1)
             },
             uploadBook(){
                 if(this.file != '' && this.file != undefined) {
