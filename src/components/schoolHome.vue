@@ -9,11 +9,11 @@
             <span @click="goToCreateAccounts">create accounts</span>
             <span @click="goToUploadBooks" >upload books</span>
             <span @click="goToLibrary">library</span>
-            <span @click="goToWriteAttendance">Write Introduction</span>
+            <span @click="goToWriteIntroduction">Write Introduction</span>
         </span>
 
         <br>
-
+        <span @click="goToReadIntroduction" >Read Introduction</span>
         <!-- teacher option -->
         <span v-show="showTeacherOptions">
             <span @click="goToSetAttendance">set attendance</span>
@@ -73,6 +73,9 @@
             goToCreateAccounts(){
                 this.$router.push('/createAccounts/' + this.$route.params.schoolId + '/' + 'principal')
             },
+            goToReadIntroduction(){
+                this.$router.push({name: 'readIntroduction'})
+            },
             goToSetAttendance(){
                 this.$router.push({name:'setAttendance'})
             },
@@ -88,7 +91,7 @@
             goToShowBooks(){
                 this.$router.push({name:'showBooks'})
             },
-            goToWriteAttendance(){
+            goToWriteIntroduction(){
                 this.$router.push({name:'writeIntroduction'})
             },
             goToLibrary(){

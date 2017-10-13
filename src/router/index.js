@@ -24,6 +24,7 @@ import showBooks from '@/components/library/showBooks'
 import uploadBooks from '@/components/library/uploadBooks'
 //Introduction
 import writeIntroduction from '@/components/introduction/writeIntroduction'
+import readIntroduction from '@/components/introduction/readIntroduction'
 Vue.use(Router)
 
 export default new Router({
@@ -41,7 +42,8 @@ export default new Router({
         { path: 'showParticularStudentAttendance', component: showParticularStudentAttendance , name: 'showParticularStudentAttendance'},
         { path: 'showBooks' , component: showBooks , name: 'showBooks'},
         { path: 'uploadBooks' , component : uploadBooks , name : 'uploadBooks'},
-        { path: 'writeIntroduction' ,component:writeIntroduction, name:'writeIntroduction'}
+        { path: 'writeIntroduction' ,component:writeIntroduction, name:'writeIntroduction'},
+        { path: 'readIntroduction' ,component:readIntroduction, name:'readIntroduction'}
     ]},
     { path: '/createAccounts/:schoolId', component:createAccounts, children:[
         { path: ':whosAccount', name:'createAccount' ,component:createAccount}
