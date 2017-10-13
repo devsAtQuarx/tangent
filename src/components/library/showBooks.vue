@@ -14,6 +14,11 @@
 <script>
     import {mapGetters} from 'vuex'
     export default {
+        data(){
+          return {
+            bookName: ''
+          }
+        },
         methods:{
             //getBooks
             getBooks(){
@@ -93,7 +98,8 @@
             }
         },
         created(){
-            if(this.$store.state.feature.libraryBooksCount == 0){
+            if(this.$store.state.feature.libraryBooksCount == 0 &&
+              this.$store.state.feature.library.length == 0){
                 this.checkIfUidIsLoaded()
             }
         },
