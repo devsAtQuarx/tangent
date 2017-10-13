@@ -11,8 +11,8 @@
         >
 
         book name:<input v-model="bookName" > <!-- required -->
-        book std:<input v-model="bookStd"> <!-- required -->
-        book sub:<input v-model="bookSubject"> <!-- required -->
+        book std:<input v-model="bookStd">>
+        book sub:<input v-model="bookSubject">
         book description:<input v-model="bookDesc">
 
         <button @click="uploadBook">submit book</button>
@@ -36,11 +36,12 @@
             uploadFile(e){
                 this.file = e.target.files[0]
                 this.fileLink = URL.createObjectURL(event.target.files[0])
+                console.log(this.fileLink)
                 this.fileLink = this.fileLink.slice(this.fileLink.lastIndexOf('/')+1)
             },
             uploadBook(){
                 if(this.file != '' && this.file != undefined) {
-                    if (this.bookName.length != 0 && this.bookStd.length != 0) {
+                    if (this.bookName.length != 0) {
                         //start preloader here ! //**************
                         let vm = this
                         let uploadTask = vm.$store.state.db.storage.ref('library/' + vm.fileLink) // no repeating name/link
@@ -56,7 +57,7 @@
                             vm.submitBook()
                         })
                     }else {
-                        alert('Name & Std is compulsory !')
+                        alert('Name is compulsory !')
                     }
                 }else {
                     alert('Upload a file !')
@@ -78,37 +79,7 @@
                     })
             }
         },
-        //updated
-        updated(){
-          let vm = this
-          this.$store.state.db.db.ref('library/')
-          .limitToLast(1)
-          .on('value',function(snapshot){
-            if(snapshot.val() != null) {
-              //console.log(Object.keys(snapshot.val())[0])
-              //console.log(vm.$store.state.events.eventsArr[0].key)
-              //console.log(vm.$store.state.events.eventsArr)
-              if(vm.$store.state.feature.library.length != 0) {
-                if (Object.keys(snapshot.val())[0] == vm.$store.state.feature.library[0].key) {
-                  //console.log("eq")
-                  //do nothing
-                } else {
-                  //console.log("not eq")
-                  let newEvent = snapshot.val()
-                  newEvent[Object.keys(snapshot.val())[0]].key = Object.keys(snapshot.val())[0]
-                  vm.$store.state.feature.library.splice(0, 0, newEvent[Object.keys(snapshot.val())[0]])
-                  vm.$store.state.feature.libraryBooksCount += 1
-                  //toast
-                }
-              }else{
-                let newEvent = snapshot.val()
-                newEvent[Object.keys(snapshot.val())[0]].key = Object.keys(snapshot.val())[0]
-                vm.$store.state.feature.library.splice(0, 0, newEvent[Object.keys(snapshot.val())[0]])
-                vm.$store.state.feature.libraryBooksCount += 1
-              }
-            }
-          })
-        },
+        
 
     }
 </script>

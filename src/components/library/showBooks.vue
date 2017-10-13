@@ -107,6 +107,37 @@
             ...mapGetters([
                 'library'
             ])
-        }
+        },
+        //updated
+        updated(){
+          let vm = this
+          this.$store.state.db.db.ref('library/')
+          .limitToLast(1)
+          .on('value',function(snapshot){
+            if(snapshot.val() != null) {
+              //console.log(Object.keys(snapshot.val())[0])
+              //console.log(vm.$store.state.events.eventsArr[0].key)
+              //console.log(vm.$store.state.events.eventsArr)
+              if(vm.$store.state.feature.library.length != 0) {
+                if (Object.keys(snapshot.val())[0] == vm.$store.state.feature.library[0].key) {
+                  //console.log("eq")
+                  //do nothing
+                } else {
+                  //console.log("not eq")
+                  let newEvent = snapshot.val()
+                  newEvent[Object.keys(snapshot.val())[0]].key = Object.keys(snapshot.val())[0]
+                  vm.$store.state.feature.library.splice(0, 0, newEvent[Object.keys(snapshot.val())[0]])
+                  vm.$store.state.feature.libraryBooksCount += 1
+                  //toast
+                }
+              }else{
+                let newEvent = snapshot.val()
+                newEvent[Object.keys(snapshot.val())[0]].key = Object.keys(snapshot.val())[0]
+                vm.$store.state.feature.library.splice(0, 0, newEvent[Object.keys(snapshot.val())[0]])
+                vm.$store.state.feature.libraryBooksCount += 1
+              }
+            }
+          })
+        },
     }
 </script>
