@@ -2,6 +2,7 @@
     <div>
         <h1>Read Introduction</h1>
         <span>{{introduction}}</span>
+
     </div>
 </template>
 <script>
@@ -27,11 +28,7 @@
             readIntro(){
                 console.log('in read intro func')
                 let vm = this
-                let schoolEmail = vm.$store.state.auth.user.email
-                while(schoolEmail.indexOf('.') != -1)
-                    schoolEmail = schoolEmail.replace(".","replaceddothere")
-                console.log(schoolEmail)
-                vm.$store.state.db.db.ref('introduction/' +schoolEmail+ '/introduction'  ).on('value', function(snapIntro){
+                vm.$store.state.db.db.ref('introduction/' + vm.$route.params.schoolId + '/introduction'  ).on('value', function(snapIntro){
                     console.log(snapIntro.val())
                    vm.introduction= snapIntro.val()
                 })
