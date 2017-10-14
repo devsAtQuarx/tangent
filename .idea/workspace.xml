@@ -5,6 +5,13 @@
       <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/components/library/searchBook.vue" />
       <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/components/library/specBook.vue" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+
+
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/components/attendance/setAttendance.vue" afterPath="$PROJECT_DIR$/src/components/attendance/setAttendance.vue" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/components/attendance/showClassAttendance.vue" afterPath="$PROJECT_DIR$/src/components/attendance/showClassAttendance.vue" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/components/attendance/showParticularStudentAttendance.vue" afterPath="$PROJECT_DIR$/src/components/attendance/showParticularStudentAttendance.vue" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/components/createAccountsComponents/createAccount.vue" afterPath="$PROJECT_DIR$/src/components/createAccountsComponents/createAccount.vue" />
+
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/components/library/showBooks.vue" afterPath="$PROJECT_DIR$/src/components/library/showBooks.vue" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/components/library/uploadBooks.vue" afterPath="$PROJECT_DIR$/src/components/library/uploadBooks.vue" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/router/index.js" afterPath="$PROJECT_DIR$/src/router/index.js" />
@@ -21,11 +28,18 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
+
       <file leaf-file-name="readIntroduction.vue" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/components/introduction/readIntroduction.vue">
           <provider selected="true" editor-type-id="text-editor">
+
             <state relative-caret-position="375">
               <caret line="25" column="14" lean-forward="true" selection-start-line="15" selection-start-column="12" selection-end-line="25" selection-end-column="14" />
+
+            <state relative-caret-position="210">
+              <caret line="14" column="0" lean-forward="true" selection-start-line="14" selection-start-column="0" selection-end-line="14" selection-end-column="0" />
+
+
               <folding />
             </state>
           </provider>
@@ -33,9 +47,11 @@
       </file>
       <file leaf-file-name="setAttendance.vue" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/components/attendance/setAttendance.vue">
+
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="82">
               <caret line="43" column="56" lean-forward="false" selection-start-line="43" selection-start-column="56" selection-end-line="43" selection-end-column="56" />
+
               <folding />
             </state>
           </provider>
@@ -61,8 +77,15 @@
       <file leaf-file-name="uploadBooks.vue" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/components/library/uploadBooks.vue">
           <provider selected="true" editor-type-id="text-editor">
+
             <state relative-caret-position="545">
               <caret line="84" column="78" lean-forward="false" selection-start-line="84" selection-start-column="78" selection-end-line="84" selection-end-column="78" />
+
+
+            <state relative-caret-position="467">
+              <caret line="65" column="25" lean-forward="true" selection-start-line="65" selection-start-column="25" selection-end-line="65" selection-end-column="25" />
+
+
               <folding />
             </state>
           </provider>
@@ -71,8 +94,15 @@
       <file leaf-file-name="showBooks.vue" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/components/library/showBooks.vue">
           <provider selected="true" editor-type-id="text-editor">
+
             <state relative-caret-position="120">
               <caret line="8" column="61" lean-forward="true" selection-start-line="8" selection-start-column="11" selection-end-line="8" selection-end-column="61" />
+
+
+            <state relative-caret-position="497">
+              <caret line="108" column="0" lean-forward="true" selection-start-line="108" selection-start-column="0" selection-end-line="108" selection-end-column="0" />
+
+
               <folding />
             </state>
           </provider>
@@ -81,8 +111,14 @@
       <file leaf-file-name="createAccounts.vue" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/components/createAccounts.vue">
           <provider selected="true" editor-type-id="text-editor">
+
             <state relative-caret-position="350">
+
+
+            <state relative-caret-position="360">
+
               <caret line="24" column="10" lean-forward="true" selection-start-line="24" selection-start-column="10" selection-end-line="24" selection-end-column="10" />
+
               <folding />
             </state>
           </provider>
@@ -101,8 +137,14 @@
       <file leaf-file-name="specBook.vue" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/components/library/specBook.vue">
           <provider selected="true" editor-type-id="text-editor">
+
             <state relative-caret-position="510">
               <caret line="34" column="13" lean-forward="true" selection-start-line="34" selection-start-column="13" selection-end-line="34" selection-end-column="13" />
+
+
+            <state relative-caret-position="255">
+              <caret line="37" column="49" lean-forward="false" selection-start-line="37" selection-start-column="49" selection-end-line="37" selection-end-column="49" />
+
               <folding />
             </state>
           </provider>
@@ -121,8 +163,14 @@
       <file leaf-file-name="Hello.vue" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/components/Hello.vue">
           <provider selected="true" editor-type-id="text-editor">
+
             <state relative-caret-position="195">
               <caret line="13" column="8" lean-forward="false" selection-start-line="13" selection-start-column="8" selection-end-line="13" selection-end-column="8" />
+
+            <state relative-caret-position="1654">
+              <caret line="143" column="0" lean-forward="true" selection-start-line="143" selection-start-column="0" selection-end-line="143" selection-end-column="0" />
+
+
               <folding />
             </state>
           </provider>
@@ -167,6 +215,7 @@
         <option value="$PROJECT_DIR$/src/store/modules/features.js" />
         <option value="$PROJECT_DIR$/src/store/index.js" />
         <option value="$PROJECT_DIR$/src/store/modules/feature.js" />
+
         <option value="$PROJECT_DIR$/src/components/introduction/writeIntroduction.vue" />
         <option value="$PROJECT_DIR$/src/components/schoolHome.vue" />
         <option value="$PROJECT_DIR$/src/components/introduction/readIntroduction.vue" />
@@ -174,11 +223,15 @@
         <option value="$PROJECT_DIR$/src/components/createAccountsComponents/createAccount.vue" />
         <option value="$PROJECT_DIR$/src/components/attendance/setAttendance.vue" />
         <option value="$PROJECT_DIR$/src/components/attendance/showParticularStudentAttendance.vue" />
+
         <option value="$PROJECT_DIR$/src/components/library/showBooks.vue" />
         <option value="$PROJECT_DIR$/src/router/index.js" />
         <option value="$PROJECT_DIR$/src/components/library/specBook.vue" />
         <option value="$PROJECT_DIR$/src/components/library/searchBook.vue" />
         <option value="$PROJECT_DIR$/src/components/library/uploadBooks.vue" />
+
+
+
       </list>
     </option>
   </component>
@@ -358,14 +411,26 @@
       <workItem from="1507563438910" duration="1294000" />
       <workItem from="1507711706374" duration="1200000" />
       <workItem from="1507713332826" duration="16190000" />
+
       <workItem from="1507871123307" duration="6989000" />
+
       <workItem from="1507987383161" duration="5205000" />
       <workItem from="1508000084468" duration="5851000" />
+
+      <workItem from="1507987383161" duration="2510000" />
+
+
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
+
     <option name="totallyTimeSpent" value="123044000" />
+
+
+    <option name="totallyTimeSpent" value="114498000" />
+
+
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="0" width="1440" height="900" extended-state="0" />
@@ -660,6 +725,7 @@
         </state>
       </provider>
     </entry>
+
     <entry file="file://$PROJECT_DIR$/src/components/tangentHomeComponents/tangentContact.vue">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="30">
@@ -668,6 +734,7 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/components/tangentHomeComponents/tangentHome.vue">
+
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="570">
           <caret line="38" column="30" lean-forward="false" selection-start-line="38" selection-start-column="30" selection-end-line="38" selection-end-column="30" />
@@ -682,6 +749,7 @@
         </state>
       </provider>
     </entry>
+
     <entry file="file://$PROJECT_DIR$/src/components/introduction/writeIntroduction.vue">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="210">
@@ -697,7 +765,11 @@
         </state>
       </provider>
     </entry>
+
     <entry file="file://$PROJECT_DIR$/src/components/attendance/showClassAttendance.vue">
+
+    <entry file="file://$PROJECT_DIR$/src/components/schoolHome.vue">
+
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1215">
           <caret line="81" column="42" lean-forward="true" selection-start-line="81" selection-start-column="42" selection-end-line="81" selection-end-column="42" />
@@ -736,74 +808,148 @@
         </state>
       </provider>
     </entry>
+
     <entry file="file://$PROJECT_DIR$/src/components/Hello.vue">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="195">
           <caret line="13" column="8" lean-forward="false" selection-start-line="13" selection-start-column="8" selection-end-line="13" selection-end-column="8" />
+
+
+    <entry file="file://$PROJECT_DIR$/src/store/modules/db.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="210">
+          <caret line="14" column="16" lean-forward="false" selection-start-line="14" selection-start-column="16" selection-end-line="14" selection-end-column="16" />
+
+
           <folding />
         </state>
       </provider>
     </entry>
+
     <entry file="file://$PROJECT_DIR$/src/components/schoolHome.vue">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="225">
           <caret line="15" column="44" lean-forward="false" selection-start-line="15" selection-start-column="44" selection-end-line="15" selection-end-column="44" />
+
+
+    <entry file="file://$PROJECT_DIR$/src/components/introduction/readIntroduction.vue">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="210">
+          <caret line="14" column="0" lean-forward="true" selection-start-line="14" selection-start-column="0" selection-end-line="14" selection-end-column="0" />
+
+
           <folding />
         </state>
       </provider>
     </entry>
+
     <entry file="file://$PROJECT_DIR$/src/components/createAccounts.vue">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="350">
           <caret line="24" column="10" lean-forward="true" selection-start-line="24" selection-start-column="10" selection-end-line="24" selection-end-column="10" />
+
+    <entry file="file://$PROJECT_DIR$/src/components/library/uploadBooks.vue">
+      <provider selected="true" editor-type-id="text-editor">
+
+        <state relative-caret-position="105">
+          <caret line="81" column="42" lean-forward="true" selection-start-line="81" selection-start-column="42" selection-end-line="81" selection-end-column="42" />
+
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/components/introduction/readIntroduction.vue">
       <provider selected="true" editor-type-id="text-editor">
+
         <state relative-caret-position="375">
           <caret line="25" column="14" lean-forward="true" selection-start-line="15" selection-start-column="12" selection-end-line="25" selection-end-column="14" />
+
+        <state relative-caret-position="360">
+          <caret line="24" column="10" lean-forward="true" selection-start-line="24" selection-start-column="10" selection-end-line="24" selection-end-column="10" />
+
           <folding />
         </state>
       </provider>
     </entry>
+
     <entry file="file://$PROJECT_DIR$/src/components/library/showBooks.vue">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="120">
           <caret line="8" column="61" lean-forward="true" selection-start-line="8" selection-start-column="11" selection-end-line="8" selection-end-column="61" />
+
+
+    <entry file="file://$PROJECT_DIR$/src/components/createAccountsComponents/createAccount.vue">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="497">
+          <caret line="108" column="0" lean-forward="true" selection-start-line="108" selection-start-column="0" selection-end-line="108" selection-end-column="0" />
+
+
           <folding />
         </state>
       </provider>
     </entry>
+
     <entry file="file://$PROJECT_DIR$/src/components/library/specBook.vue">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="510">
           <caret line="34" column="13" lean-forward="true" selection-start-line="34" selection-start-column="13" selection-end-line="34" selection-end-column="13" />
+
+
+    <entry file="file://$PROJECT_DIR$/src/components/attendance/setAttendance.vue">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="309">
+          <caret line="43" column="56" lean-forward="false" selection-start-line="43" selection-start-column="56" selection-end-line="43" selection-end-column="56" />
+
           <folding />
         </state>
       </provider>
     </entry>
+
     <entry file="file://$PROJECT_DIR$/src/components/library/searchBook.vue">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="695">
           <caret line="58" column="21" lean-forward="true" selection-start-line="58" selection-start-column="21" selection-end-line="58" selection-end-column="21" />
+
+
+    <entry file="file://$PROJECT_DIR$/src/components/attendance/showParticularStudentAttendance.vue">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="255">
+          <caret line="37" column="49" lean-forward="false" selection-start-line="37" selection-start-column="49" selection-end-line="37" selection-end-column="49" />
+
+
           <folding />
         </state>
       </provider>
     </entry>
+
     <entry file="file://$PROJECT_DIR$/src/components/attendance/setAttendance.vue">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="82">
           <caret line="43" column="56" lean-forward="false" selection-start-line="43" selection-start-column="56" selection-end-line="43" selection-end-column="56" />
+
+
+    <entry file="file://$PROJECT_DIR$/src/components/library/uploadBooks.vue">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="467">
+          <caret line="65" column="25" lean-forward="true" selection-start-line="65" selection-start-column="25" selection-end-line="65" selection-end-column="25" />
+
           <folding />
         </state>
       </provider>
     </entry>
+
     <entry file="file://$PROJECT_DIR$/src/components/library/uploadBooks.vue">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="545">
           <caret line="84" column="78" lean-forward="false" selection-start-line="84" selection-start-column="78" selection-end-line="84" selection-end-column="78" />
+
+
+    <entry file="file://$PROJECT_DIR$/src/components/library/showBooks.vue">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1654">
+          <caret line="143" column="0" lean-forward="true" selection-start-line="143" selection-start-column="0" selection-end-line="143" selection-end-column="0" />
+
+
           <folding />
         </state>
       </provider>
