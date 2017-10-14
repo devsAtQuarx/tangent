@@ -41,29 +41,29 @@
                 vm.$store.state.db.db.ref('createdAccounts/student/' + emailInDb + '/std').once('value',function (snapStudentClass) {
                     console.log(snapStudentClass.val())
 
-                    vm.$store.state.db.db.ref('attendance/' + snapStudentClass.val() + '/' + emailInDb)
-                        .once('value', function(snapStudentAttendance){
-                            console.log(snapStudentAttendance.val())
-                            vm.studentAttendance = snapStudentAttendance.val()
+                    vm.$store.state.db.db.ref('attendance/' + vm.$route.params.schoolId  + '/' + snapStudentClass.val() + '/' + emailInDb)
+                    .once('value', function(snapStudentAttendance){
+                        console.log(snapStudentAttendance.val())
+                        vm.studentAttendance = snapStudentAttendance.val()
 
-                            console.log(snapStudentAttendance.val())
+                        console.log(snapStudentAttendance.val())
 
-                            //attendance %
-                            let pCount = 0
-                            let tCount = 0
-                            for(let z in snapStudentAttendance.val()){
-                                console.log(snapStudentAttendance.val()[z])
-                                tCount += 1
-                                if(snapStudentAttendance.val()[z] == 'p'){
-                                    pCount += 1
-                                }
+                        //attendance %
+                        let pCount = 0
+                        let tCount = 0
+                        for(let z in snapStudentAttendance.val()){
+                            console.log(snapStudentAttendance.val()[z])
+                            tCount += 1
+                            if(snapStudentAttendance.val()[z] == 'p'){
+                                pCount += 1
                             }
-                            //console.log(pCount)
-                            let attendancePercantage = (pCount*100)/tCount
-                            console.log(attendancePercantage)
-                            vm.attendancePercantage = attendancePercantage
+                        }
+                        //console.log(pCount)
+                        let attendancePercantage = (pCount*100)/tCount
+                        console.log(attendancePercantage)
+                        vm.attendancePercantage = attendancePercantage
 
-                        })
+                    })
                 })
             }
         },

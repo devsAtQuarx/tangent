@@ -44,7 +44,7 @@
                     if (this.bookName.length != 0) {
                         //start preloader here ! //**************
                         let vm = this
-                        let uploadTask = vm.$store.state.db.storage.ref('library/' + vm.fileLink) // no repeating name/link
+                        let uploadTask = vm.$store.state.db.storage.ref('library/' + this.$route.params.schoolId + '/' + vm.fileLink) // no repeating name/link
                             .put(vm.file)
                         uploadTask.on('state_changed', function (snapshot) {
                         }, function (error) {
@@ -72,7 +72,7 @@
                     desc:this.bookDesc,
                     link:this.fileDownloadLink
                 }
-                vm.$store.state.db.db.ref('library/').push(tmpObj)
+                vm.$store.state.db.db.ref('library/' + this.$route.params.schoolId).push(tmpObj)
                     .then(function(snapBook){
                         console.log('saved: ' + snapBook)
                         //stop preloader here ! //***************

@@ -47,7 +47,7 @@
         methods:{
             getStd(){
                 let vm = this
-                vm.$store.state.db.db.ref('checkClassAttendance/').once('value',function(snapStd){
+                vm.$store.state.db.db.ref('checkClassAttendance/' + this.$route.params.schoolId).once('value',function(snapStd){
 
                     vm.stds = snapStd.val()
 
@@ -68,14 +68,14 @@
                 this.classStd = []
                 //console.log(i)
                 let vm = this
-                this.$store.state.db.db.ref('attendance/' + i).once('value', function(snapClassAttendance){
+                this.$store.state.db.db.ref('attendance/' + this.$route.params.schoolId + '/' + i).once('value', function(snapClassAttendance){
                     //console.log(snapClassAttendance.val())
 
                     //email to name
                     for(let j in snapClassAttendance.val()){
 
                         //get name
-                        vm.$store.state.db.db.ref('classDetail/' + i + '/student/' + j + '/name')
+                        vm.$store.state.db.db.ref('classDetail/' + vm.$route.params.schoolId + '/' + i + '/student/' + j + '/name')
                         .once('value',function(snapName){
                             //console.log("loop: ", snapClassAttendance.val()[j])
 

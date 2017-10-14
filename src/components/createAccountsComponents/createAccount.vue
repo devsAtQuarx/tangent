@@ -79,18 +79,18 @@
                                             //console.log(tmpObj.ctStd)
 
                                             //check
-                                            vm.$store.state.db.db.ref('checkCt/'+ emailInDb)
+                                            vm.$store.state.db.db.ref('checkCt/'+ vm.$route.params.schoolId + '/' + emailInDb)
                                                 .once('value', function(snapCheckCtGet){
 
                                                     if(snapCheckCtGet.val() == null){
 
                                                         //post normally
                                                         if(tmpObj.ctStd != ''){ //ctStd != ''
-                                                            vm.$store.state.db.db.ref('classDetail/'+ tmpObj.ctStd +'/ct/' +
+                                                            vm.$store.state.db.db.ref('classDetail/'+ vm.$route.params.schoolId + '/' + tmpObj.ctStd +'/ct/' +
                                                                 emailInDb).set(tmpObj)
                                                                 .then(function(snapClassDeatail){
 
-                                                                    vm.$store.state.db.db.ref('checkCt/'+ emailInDb).set(tmpObj)
+                                                                    vm.$store.state.db.db.ref('checkCt/'+ vm.$route.params.schoolId + '/' + emailInDb).set(tmpObj)
                                                                         .then(function(snapCheckCtPost){
                                                                             alert('saved email in db !') //*************
                                                                         })
@@ -104,20 +104,20 @@
                                                         console.log(snapCheckCtGet.val())
 
                                                         //remove
-                                                        vm.$store.state.db.db.ref('classDetail/'+ snapCheckCtGet.val().ctStd +'/ct/' +
+                                                        vm.$store.state.db.db.ref('classDetail/'+ vm.$route.params.schoolId + '/' + snapCheckCtGet.val().ctStd +'/ct/' +
                                                             emailInDb).remove().then(function(snapCtRemove){
 
-                                                            vm.$store.state.db.db.ref('checkCt/'+ emailInDb).remove()
+                                                            vm.$store.state.db.db.ref('checkCt/'+ vm.$route.params.schoolId + '/' + emailInDb).remove()
                                                                 .then(function(snapCheckCtRemove){
                                                                     alert('he was already a ct, removed from earlier post')
 
                                                                     //post normally
                                                                     if (tmpObj.ctStd != '') { //ctStd != ''
-                                                                        vm.$store.state.db.db.ref('classDetail/' + tmpObj.ctStd + '/ct/' +
+                                                                        vm.$store.state.db.db.ref('classDetail/' + vm.$route.params.schoolId + '/' + tmpObj.ctStd + '/ct/' +
                                                                             emailInDb).set(tmpObj)
                                                                             .then(function (snapClassDeatail) {
 
-                                                                                vm.$store.state.db.db.ref('checkCt/' + emailInDb).set(tmpObj)
+                                                                                vm.$store.state.db.db.ref('checkCt/' + vm.$route.params.schoolId + '/' + emailInDb).set(tmpObj)
                                                                                     .then(function (snapCheckCtPost) {
                                                                                         alert('saved email in db !') //*************
                                                                                     })
@@ -131,7 +131,7 @@
                                                     }
                                                 })
                                         }else if(vm.$route.params.whosAccount == 'student'){
-                                            vm.$store.state.db.db.ref('classDetail/'+ tmpObj.std +'/student/' +
+                                            vm.$store.state.db.db.ref('classDetail/'+ vm.$route.params.schoolId + '/' + tmpObj.std +'/student/' +
                                                 emailInDb).set(tmpObj)
                                                 .then(function(snapClassDeatail){
                                                     alert('saved email in db !') //***********
