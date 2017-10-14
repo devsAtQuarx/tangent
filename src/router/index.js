@@ -22,6 +22,8 @@ import showParticularStudentAttendance from '@/components/attendance/showParticu
 //library
 import showBooks from '@/components/library/showBooks'
 import uploadBooks from '@/components/library/uploadBooks'
+import searchBook from '@/components/library/searchBook'
+import specbook from '@/components/library/specBook'
 //Introduction
 import writeIntroduction from '@/components/introduction/writeIntroduction'
 import readIntroduction from '@/components/introduction/readIntroduction'
@@ -42,6 +44,8 @@ export default new Router({
         { path: 'showParticularStudentAttendance', component: showParticularStudentAttendance , name: 'showParticularStudentAttendance'},
         { path: 'showBooks' , component: showBooks , name: 'showBooks'},
         { path: 'uploadBooks' , component : uploadBooks , name : 'uploadBooks'},
+        { path: 'searchBook' , component: searchBook , name : 'searchBook'},
+        { path: 'specBook/:bookId' , component : specbook , name: 'specBook'},
         { path: 'writeIntroduction' ,component:writeIntroduction, name:'writeIntroduction'},
         { path: 'readIntroduction' ,component:readIntroduction, name:'readIntroduction'}
     ]},

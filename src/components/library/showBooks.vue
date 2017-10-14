@@ -2,6 +2,8 @@
     <div>
         <h1>show Books</h1>
 
+        <button @click="goToSearchBook()">search book</button>
+
         <li v-for="book in library">
             {{book}}
             <a :href="book.link" target="_blank">download</a>
@@ -95,6 +97,10 @@
                 };
                 xhr.open('GET', url);
                 xhr.send();
+            },
+            //goToSearchBook
+            goToSearchBook(){
+                this.$router.push({name: 'searchBook'})
             }
         },
         created(){

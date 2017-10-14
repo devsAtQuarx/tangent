@@ -66,7 +66,7 @@
             submitBook(){
                 let vm = this
                 let tmpObj = {
-                    name:this.bookName,
+                    name:this.bookName.toUpperCase(),
                     std:this.bookStd,
                     sub: this.bookSubject,
                     desc:this.bookDesc,
@@ -75,7 +75,17 @@
                 vm.$store.state.db.db.ref('library/' + this.$route.params.schoolId).push(tmpObj)
                     .then(function(snapBook){
                         console.log('saved: ' + snapBook)
-                        //stop preloader here ! //***************
+                        let bookKey = ''
+                        bookKey = "" + snapBook
+                        //console.log(bookKey.indexOf('/'))
+                        bookKey = bookKey.slice(bookKey.lastIndexOf('/')+1)
+                        console.log('bookKey: ',bookKey)
+
+                        vm.$store.state.db.db.ref('libIndex/' + vm.$route.params.schoolId + '/' + tmpObj.name[0] + '/' + bookKey)
+                            .set({bookKey, bookName: vm.bookName.toUpperCase()})
+                            .then(function(snapLibIndex){
+                                //stop preloader here ! //***************
+                            })
                     })
             }
         },
