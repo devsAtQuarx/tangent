@@ -25,6 +25,20 @@ import uploadBooks from '@/components/library/uploadBooks'
 //Introduction
 import writeIntroduction from '@/components/introduction/writeIntroduction'
 import readIntroduction from '@/components/introduction/readIntroduction'
+//About
+import writeAbout from '@/components/about/writeAbout'
+import readAbout from '@/components/about/readAbout'
+//Mission
+import writeMission from '@/components/Mission/writeMission'
+import readMission from '@/components/Mission/readMission'
+//Vision
+import writeVision from '@/components/vision/writeVision.vue'
+import readVision from '@/components/vision/readVision.vue'
+//objective
+import writeObjective from '@/components/objective/writeObjective'
+import readObjective from '@/components/objective/readObjective'
+//Image
+import uploadImage from '@/components/images/uploadImage'
 Vue.use(Router)
 
 export default new Router({
@@ -43,7 +57,16 @@ export default new Router({
         { path: 'showBooks' , component: showBooks , name: 'showBooks'},
         { path: 'uploadBooks' , component : uploadBooks , name : 'uploadBooks'},
         { path: 'writeIntroduction' ,component:writeIntroduction, name:'writeIntroduction'},
-        { path: 'readIntroduction' ,component:readIntroduction, name:'readIntroduction'}
+        { path: 'readIntroduction' ,component:readIntroduction, name:'readIntroduction'},
+        { path: 'writeAbout' ,component:writeAbout, name:'writeAbout'},
+        { path: 'readAbout' ,component:readAbout, name:'readAbout'},
+        { path: 'writeMission' ,component:writeMission, name:'writeMission'},
+        { path: 'readMission' ,component:readMission, name:'readMission'},
+        { path: 'writeVision' ,component:writeVision, name:'writeVision'},
+        { path: 'readVision' ,component:readVision, name:'readVision'},
+        { path: 'writeObjective' ,component:writeObjective, name:'writeObjective'},
+        { path: 'readObjective' ,component:readObjective, name:'readObjective'},
+        { path: 'uploadImage' ,component:uploadImage, name:'uploadImage'}
     ]},
     { path: '/createAccounts/:schoolId', component:createAccounts, children:[
         { path: ':whosAccount', name:'createAccount' ,component:createAccount}

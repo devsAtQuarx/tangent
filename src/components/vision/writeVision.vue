@@ -1,40 +1,37 @@
 <template>
     <div>
-        <input v-model="introduction" type="text">
-        <button @click="addIntroInDb">save</button>
+        <input v-model="vision" type="text">
+        <button @click="addvisionInDb">save</button>
     </div>
 </template>
 <script>
     export default {
         data(){
             return{
-                introduction: ''
+                vision: ''
             }
         },
         methods:{
-            addIntroInDb(){
+            addvisionInDb(){
                 let vm = this
                 let schoolUid = this.$store.state.auth.user.uid
 
                 //console.log(schoolEmail)
-                this.$store.state.db.db.ref('introduction/' + schoolUid + '/' + 'introduction').set(vm.introduction)
-                this.$store.state.db.db.ref('introduction/' + schoolUid + '/' + 'schoolId').set(vm.$route.params.schoolId)
+                this.$store.state.db.db.ref('vision/' + schoolUid + '/' + 'vision').set(vm.vision)
+                this.$store.state.db.db.ref('vision/' + schoolUid + '/' + 'schoolId').set(vm.$route.params.schoolId)
             },
-            getIntroFromDb(){
-
+            getvisionFromDb(){
                 let vm = this
                 let schoolUid = this.$store.state.auth.user.uid
-                   // console.log("working")
-                this.$store.state.db.db.ref('introduction/' + schoolUid)
-                    .once('value', function(snapIntro){
-                        //console.log(snapIntro.val().introduction)
-                        //1 -> null
 
+                this.$store.state.db.db.ref('vision/' + schoolUid)
+                    .once('value', function(snapIntro){
+                        console.log(snapIntro.val())
+                        //1 -> null
                         if(snapIntro.val() == null){
                             //do nothing
                         }else { //2-> some value
-                            vm.introduction = snapIntro.val().introduction
-                            console.log(snapIntro.val().introduction)
+                            vm.vision = snapIntro.val().vision
                         }
                         //stop loader /*****************
                     })
@@ -47,7 +44,7 @@
                         this.checkIfUidIsLoadedOnPageLoad() // call again after 1 sec
                     },1000)
                 }else{ //loggedIn
-                    this.getIntroFromDb()
+                    this.getvisionFromDb()
                 }
             },
         },

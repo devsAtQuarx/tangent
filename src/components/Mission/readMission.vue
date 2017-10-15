@@ -1,16 +1,16 @@
 <template>
     <div>
-        <h1>Read Introduction</h1>
-        <span>{{introduction}}</span>
+        <h1>Mission</h1>
+        <span>{{mission}}</span>
 
     </div>
 </template>
 <script>
     export default{
         data(){
-           return{
-               introduction:''
-           }
+            return{
+                mission:''
+            }
         },
         methods:{
 
@@ -22,25 +22,26 @@
                         this.checkIfUidIsLoaded() // call again after 1 sec
                     },1000)
                 }else{ //loggedIn
-                    this.readIntro()
+                    this.readMission()
                 }
             },
-            readIntro(){
+            readMission(){
                 console.log('in read intro func')
                 let vm = this
-                vm.$store.state.db.db.ref('introduction/' + vm.$route.params.schoolId + '/introduction'  ).on('value', function(snapIntro){
+                vm.$store.state.db.db.ref('mission/' + vm.$route.params.schoolId + '/mission'  ).on('value', function(snapIntro){
                     if(snapIntro.val()!= null){
                         if(snapIntro.val()=="") {
                             console.log("Empty")
-                            vm.introduction = 'No information about this school has been provided'
+                            vm.mission = 'No information has been provided'
                         }
                         else {
                             console.log(snapIntro.val())
-                            vm.introduction = snapIntro.val()
+                            vm.mission = snapIntro.val()
                         }
                     }
                     else{
-                        vm.introduction="No information about this school has been provided"
+                        console.log("null")
+                        vm.mission='No information has been provided'
                     }
                 })
             }

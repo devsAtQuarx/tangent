@@ -10,10 +10,19 @@
             <span @click="goToUploadBooks" >upload books</span>
             <span @click="goToLibrary">library</span>
             <span @click="goToWriteIntroduction">Write Introduction</span>
+            <span @click="goToWriteAbout">Write About</span>
+            <span @click="goToWriteMission">Write Mission</span>
+            <span @click="goToWriteVision">Write Vision</span>
+            <span @click="goToWriteObjective">Write Objective</span>
+            <span @click="goToUploadImage">Upload Image</span>
         </span>
 
         <br>
         <span @click="goToReadIntroduction" >Read Introduction</span>
+        <span @click="goToReadAbout" >Read About</span>
+        <span @click="goToReadMission" >Read Mission</span>
+        <span @click="goToReadVision" >Read Vision</span>
+        <span @click="goToReadObjective" >Read Objective</span>
         <!-- teacher option -->
         <span v-show="showTeacherOptions">
             <span @click="goToSetAttendance">set attendance</span>
@@ -76,6 +85,18 @@
             goToReadIntroduction(){
                 this.$router.push({name: 'readIntroduction'})
             },
+            goToReadObjective(){
+                this.$router.push({name: 'readObjective'})
+            },
+            goToReadAbout(){
+                this.$router.push({name: 'readAbout'})
+            },
+            goToReadMission(){
+                this.$router.push({name: 'readMission'})
+            },
+            goToReadVision(){
+                this.$router.push({name: 'readVision'})
+            },
             goToSetAttendance(){
                 this.$router.push({name:'setAttendance'})
             },
@@ -93,6 +114,21 @@
             },
             goToWriteIntroduction(){
                 this.$router.push({name:'writeIntroduction'})
+            },
+            goToWriteAbout(){
+                this.$router.push({name:'writeAbout'})
+            },
+            goToWriteMission(){
+                this.$router.push({name:'writeMission'})
+            },
+            goToUploadImage(){
+                this.$router.push({name:'uploadImage'})
+            },
+            goToWriteVision(){
+                this.$router.push({name:'writeVision'})
+            },
+            goToWriteObjective(){
+                this.$router.push({name:'writeObjective'})
             },
             goToLibrary(){
                 this.$router.push({name:'showBooks'})
