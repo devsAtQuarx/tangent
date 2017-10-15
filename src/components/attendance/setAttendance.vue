@@ -25,20 +25,20 @@
                     emailInDb = emailInDb.replace(".","replaceddothere")
                 //console.log(emailInDb)
 
-                this.$store.state.db.db.ref('checkCt/' + emailInDb).once('value',function(snapCheckCt){
+                this.$store.state.db.db.ref('checkCt/' + this.$route.params.schoolId +'/' +emailInDb).once('value',function(snapCheckCt){
                     //console.log(snapCheckCt.val())
                     if(snapCheckCt.val() == null){ //not a class teacher
                         alert('no a ct')
-                        this.$router.go(-1)
+                        vm.$router.go(-1)
                     }else{ // if class teacher
                         //do something
 
                         //set check class for principal
-                        vm.$store.state.db.db.ref('checkClassAttendance/' + snapCheckCt.val().ctStd).set(snapCheckCt.val())
+                        vm.$store.state.db.db.ref('checkClassAttendance/' + vm.$route.params.schoolId + '/' +snapCheckCt.val().ctStd).set(snapCheckCt.val())
                             .then(function (setClassCheckForPrincipal) {
 
 
-                            vm.$store.state.db.db.ref('classDetail/' + snapCheckCt.val().ctStd + '/' + 'student/')
+                            vm.$store.state.db.db.ref('classDetail/' + vm.$route.params.schoolId  + '/' + snapCheckCt.val().ctStd + '/' + 'student/')
                             .once('value',function (snapStudentList) {
 
                                 for (let i in snapStudentList.val()) { //for /**********
@@ -49,13 +49,13 @@
                                         studentEmail = studentEmail.replace(".", "replaceddothere")
 
                                     //checkIfAttendance already set
-                                    vm.$store.state.db.db.ref('attendance/' + snapCheckCt.val().ctStd + '/' +
+                                    vm.$store.state.db.db.ref('attendance/' + vm.$route.params.schoolId + '/' +snapCheckCt.val().ctStd + '/' +
                                         studentEmail + '/' + moment().format("DDMMYYYY")).once('value', function (snapGetAttendance) {
 
                                         if (snapGetAttendance.val() == null) {
 
                                             //set absent to all
-                                            vm.$store.state.db.db.ref('attendance/' + snapCheckCt.val().ctStd + '/' +
+                                            vm.$store.state.db.db.ref('attendance/' + vm.$route.params.schoolId + '/' + snapCheckCt.val().ctStd + '/' +
                                                 studentEmail + '/' + moment().format("DDMMYYYY")).set('a').then(function (snapSetAttendance) {
 
                                                 let tmpObj = {
@@ -110,13 +110,13 @@
                     particularStudentEmail = particularStudentEmail.replace(".","replaceddothere")
 
                 //check attendance in database
-                this.$store.state.db.db.ref('attendance/' + student.std + '/' + particularStudentEmail + '/' +
+                this.$store.state.db.db.ref('attendance/' + vm.$route.params.schoolId + '/' + student.std + '/' + particularStudentEmail + '/' +
                     moment().format("DDMMYYYY") )
                 .once('value',function (snapLastAttendance) {
                     //console.log(snapLastAttendance.val()) //check if present or absent
 
                     if(snapLastAttendance.val() == 'a'){ // if absent, mark present
-                        vm.$store.state.db.db.ref('attendance/' + student.std + '/' + particularStudentEmail + '/' +
+                        vm.$store.state.db.db.ref('attendance/' + vm.$route.params.schoolId +'/' + student.std + '/' + particularStudentEmail + '/' +
                             moment().format("DDMMYYYY") ).set('p')
                         .then(function (snapStatus) {
 
@@ -125,7 +125,7 @@
 
                         })
                     }else{ // if presnt , mark absent
-                        vm.$store.state.db.db.ref('attendance/' + student.std + '/' + particularStudentEmail + '/' +
+                        vm.$store.state.db.db.ref('attendance/' + vm.$route.params.schoolId + '/' + student.std + '/' + particularStudentEmail + '/' +
                             moment().format("DDMMYYYY") ).set('a')
                         .then(function(snapStatus){
 

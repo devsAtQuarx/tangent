@@ -2,6 +2,8 @@
     <div>
         <h1>show Books</h1>
 
+        <button @click="goToSearchBook()">search book</button>
+
         <li v-for="book in library">
             {{book}}
             <a :href="book.link" target="_blank">download</a>
@@ -23,7 +25,7 @@
             //getBooks
             getBooks(){
                 let vm = this
-                vm.$store.state.db.db.ref('library/').limitToLast(3).once('value', function (snapBooks) {
+                vm.$store.state.db.db.ref('library/' + this.$route.params.schoolId).limitToLast(3).once('value', function (snapBooks) {
                     //console.log(snapBooks.val())
                     vm.reverseFetchedBooksOrder(snapBooks.val())
                 })
@@ -60,7 +62,7 @@
                 this.$store.state.feature.libraryBooksCount += 2
                 if(vm.$store.state.feature.library[this.$store.state.feature.libraryBooksCount]
                     != undefined ){
-                    this.$store.state.db.db.ref('library/')
+                    this.$store.state.db.db.ref('library/' + this.$route.params.schoolId)
                         .orderByKey()
                         .endAt(vm.$store.state.feature.library[this.$store.state.feature.libraryBooksCount].key)
                         .limitToLast(3)
@@ -95,6 +97,10 @@
                 };
                 xhr.open('GET', url);
                 xhr.send();
+            },
+            //goToSearchBook
+            goToSearchBook(){
+                this.$router.push({name: 'searchBook'})
             }
         },
         created(){
@@ -111,7 +117,7 @@
         //updated
         updated(){
           let vm = this
-          this.$store.state.db.db.ref('library/')
+          this.$store.state.db.db.ref('library/' + this.$route.params.schoolId)
           .limitToLast(1)
           .on('value',function(snapshot){
             if(snapshot.val() != null) {

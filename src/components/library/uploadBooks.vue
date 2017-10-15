@@ -44,7 +44,7 @@
                     if (this.bookName.length != 0) {
                         //start preloader here ! //**************
                         let vm = this
-                        let uploadTask = vm.$store.state.db.storage.ref('library/' + vm.fileLink) // no repeating name/link
+                        let uploadTask = vm.$store.state.db.storage.ref('library/' + this.$route.params.schoolId + '/' + vm.fileLink) // no repeating name/link
                             .put(vm.file)
                         uploadTask.on('state_changed', function (snapshot) {
                         }, function (error) {
@@ -66,16 +66,26 @@
             submitBook(){
                 let vm = this
                 let tmpObj = {
-                    name:this.bookName,
+                    name:this.bookName.toUpperCase(),
                     std:this.bookStd,
                     sub: this.bookSubject,
                     desc:this.bookDesc,
                     link:this.fileDownloadLink
                 }
-                vm.$store.state.db.db.ref('library/').push(tmpObj)
+                vm.$store.state.db.db.ref('library/' + this.$route.params.schoolId).push(tmpObj)
                     .then(function(snapBook){
                         console.log('saved: ' + snapBook)
-                        //stop preloader here ! //***************
+                        let bookKey = ''
+                        bookKey = "" + snapBook
+                        //console.log(bookKey.indexOf('/'))
+                        bookKey = bookKey.slice(bookKey.lastIndexOf('/')+1)
+                        console.log('bookKey: ',bookKey)
+
+                        vm.$store.state.db.db.ref('libIndex/' + vm.$route.params.schoolId + '/' + tmpObj.name[0] + '/' + bookKey)
+                            .set({bookKey, bookName: vm.bookName.toUpperCase()})
+                            .then(function(snapLibIndex){
+                                //stop preloader here ! //***************
+                            })
                     })
             }
         },
