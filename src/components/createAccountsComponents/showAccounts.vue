@@ -19,7 +19,7 @@
                 <input v-model="account.std" @keyup="changeTeacherCtStd(account, index)">
 
                 <!-- save -->
-                <button  v-show="account.showSave" @click="saveAccount(account, index)">
+                <button  v-show="account.showSave == true && account.std != '' " @click="saveAccount(account, index)">
                     save
                 </button>
             </span>

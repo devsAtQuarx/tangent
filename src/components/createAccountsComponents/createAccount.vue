@@ -69,17 +69,14 @@
                     if((this.$route.params.whosAccount == 'student' && tmpObj.std != '' && tmpObj.name != '' ) ||
                         (this.$route.params.whosAccount != 'student' && tmpObj.name != '' )){
 
-
                         vm.$store.state.db.db.ref('school/'+ vm.$route.params.schoolId + '/createdAccounts/' +
                             vm.$route.params.whosAccount + '/' + emailInDb).once('value', function(snapCheckcheckDuplicateVar){
 
-                            console.log('check 1 => ', snapCheckcheckDuplicateVar.val())
-
-                            let checkDuplicateVar, checkStudentOldClass
+                            let checkDuplicateVar//, checkStudentOldClass
                             if(snapCheckcheckDuplicateVar.val() != null){
                                 if(vm.$route.params.whosAccount == 'student') {
                                     checkDuplicateVar = snapCheckcheckDuplicateVar.val().email
-                                    checkStudentOldClass = snapCheckcheckDuplicateVar.val().std
+                                    //checkStudentOldClass = snapCheckcheckDuplicateVar.val().std
                                 }
                                 else if(vm.$route.params.whosAccount == 'teacher')
                                     checkDuplicateVar = snapCheckcheckDuplicateVar.val().email
@@ -89,13 +86,10 @@
 
                             //console.log('old class => ', checkStudentOldClass)
                             if(checkDuplicateVar != undefined){ //duplicate
-                                //ask
-                                alert('overwritting !')
+                                alert('overwritting not allowed here !')
                             }else{ //1st time
-                                //dont ask
+                                vm.finalSave(emailInDb, tmpObj, checkDuplicateVar) //ok save
                             }
-
-                            vm.finalSave(emailInDb, tmpObj, checkDuplicateVar, checkStudentOldClass) //ok save
                         })
 
                     }else{
@@ -106,102 +100,43 @@
                 }
             },
 
-            finalSave(emailInDb, tmpObj, checkDuplicateVar, checkStudentOldClass){
+            finalSave(emailInDb, tmpObj, checkDuplicateVar){
 
                 let vm = this
 
                 vm.$store.state.db.db.ref('school/'+ vm.$route.params.schoolId + '/createdAccounts/' +
                     vm.$route.params.whosAccount + '/' + emailInDb)
-                    .set(tmpObj) //set
+                    .set(tmpObj) //set here
                     .then(function(snapPrincipalEmail){
                         vm.$store.state.db.db.ref('createdAccounts/' + vm.$route.params.whosAccount +
                             '/' + emailInDb)
-                            .set(tmpObj) //set
+                            .set(tmpObj) //set here
                             .then(function (snapPrincipalEmail) {
 
-                                if(vm.$route.params.whosAccount == 'teacher' ){
-                                    //console.log(tmpObj.ctStd)
+                                if(vm.$route.params.whosAccount == 'teacher' ){ /////// teacher
+                                    //post normally
+                                    if(tmpObj.ctStd != ''){ //ctStd != ''
+                                        vm.$store.state.db.db.ref('classDetail/'+ vm.$route.params.schoolId + '/' + tmpObj.ctStd +'/ct/' +
+                                            emailInDb).set(tmpObj)
+                                            .then(function(snapClassDeatail){
 
-                                    //check ct
-                                    vm.$store.state.db.db.ref('checkCt/'+ vm.$route.params.schoolId + '/' + emailInDb)
-                                        .once('value', function(snapCheckCtGet){
-
-                                            if(snapCheckCtGet.val() == null){
-
-                                                //post normally
-                                                if(tmpObj.ctStd != ''){ //ctStd != ''
-                                                    vm.$store.state.db.db.ref('classDetail/'+ vm.$route.params.schoolId + '/' + tmpObj.ctStd +'/ct/' +
-                                                        emailInDb).set(tmpObj)
-                                                        .then(function(snapClassDeatail){
-
-                                                            vm.$store.state.db.db.ref('checkCt/'+ vm.$route.params.schoolId + '/' + emailInDb).set(tmpObj)
-                                                                .then(function(snapCheckCtPost){
-                                                                    alert('saved email in db !') //*************
-                                                                })
-
-                                                        })
-
-                                                }else{
-                                                    alert('teacher saved')
-                                                }
-                                            }else { //not null, already ct
-
-                                                console.log(snapCheckCtGet.val())
-
-                                                //remove
-                                                vm.$store.state.db.db.ref('classDetail/'+ vm.$route.params.schoolId + '/' + snapCheckCtGet.val().ctStd +'/ct/' +
-                                                    emailInDb).remove().then(function(snapCtRemove){
-
-                                                    vm.$store.state.db.db.ref('checkCt/'+ vm.$route.params.schoolId + '/' + emailInDb).remove()
-                                                        .then(function(snapCheckCtRemove){
-                                                            alert('he was already a ct, removed from earlier post')
-
-                                                            //post normally
-                                                            if (tmpObj.ctStd != '') { //ctStd != ''
-                                                                vm.$store.state.db.db.ref('classDetail/' + vm.$route.params.schoolId + '/' + tmpObj.ctStd + '/ct/' +
-                                                                    emailInDb).set(tmpObj)
-                                                                    .then(function (snapClassDeatail) {
-
-                                                                        vm.$store.state.db.db.ref('checkCt/' + vm.$route.params.schoolId + '/' + emailInDb).set(tmpObj)
-                                                                            .then(function (snapCheckCtPost) {
-                                                                                alert('saved email in db !') //*************
-                                                                            })
-
-                                                                    })
-                                                            }
-
-                                                        })
-                                                })
-
-                                            }
-                                        })
-                                }else if(vm.$route.params.whosAccount == 'student'){
-
-                                    console.log('classDetail/'+ vm.$route.params.schoolId + '/' + checkStudentOldClass +'/student/' +
-                                        emailInDb)
-
-                                    vm.$store.state.db.db.ref('classDetail/'+ vm.$route.params.schoolId + '/' + checkStudentOldClass +'/student/' +
-                                        emailInDb)
-                                        .once('value', function(snapGetClassDeatail){
-                                            console.log('check: ',snapGetClassDeatail.val())
-                                            if(snapGetClassDeatail.val() == null){
-                                                vm.$store.state.db.db.ref('classDetail/'+ vm.$route.params.schoolId + '/' + tmpObj.std +'/student/' +
-                                                    emailInDb).set(tmpObj)
-                                                    .then(function(snapClassDeatail){
-                                                        alert('saved email in db !') //***********
+                                                vm.$store.state.db.db.ref('checkCt/'+ vm.$route.params.schoolId + '/' + emailInDb).set(tmpObj)
+                                                    .then(function(snapCheckCtPost){
+                                                        alert('saved email in db !') //*************
                                                     })
-                                            }else{
-                                                alert('student with this id is already present !')
-                                                vm.$store.state.db.db.ref('classDetail/'+ vm.$route.params.schoolId + '/' + checkStudentOldClass +'/student/' +
-                                                    emailInDb).remove().then(function(snapUpdateStudentClass){
-                                                    vm.$store.state.db.db.ref('classDetail/'+ vm.$route.params.schoolId + '/' + tmpObj.std +'/student/' +
-                                                        emailInDb).set(tmpObj).then(function(snapUpdatedStudentClass){
-                                                        alert('updated !')
-                                                    })
-                                                })
-                                            }
+
+                                            })
+
+                                    }else{
+                                        alert('teacher saved')
+                                    }
+                                }else if(vm.$route.params.whosAccount == 'student'){ ////// student
+                                    vm.$store.state.db.db.ref('classDetail/'+ vm.$route.params.schoolId + '/' + tmpObj.std +'/student/' +
+                                        emailInDb).set(tmpObj)
+                                        .then(function(snapClassDeatail){
+                                            alert('saved email in db !') //***********
                                         })
-                                }else{
+                                }else{ /////// else means principal
                                     alert('saved email in db !') //*************
                                 }
                             })
