@@ -24,6 +24,7 @@
         <span @click="goToReadVision" >Read Vision</span>
         <span @click="goToReadObjective" >Read Objective</span>
         <span @click="goToSeeImage" >See Image</span>
+        <span @click="goToTaskbar">Taskbar</span>
         <!-- teacher option -->
         <span v-show="showTeacherOptions">
             <span @click="goToSetAttendance">set attendance</span>
@@ -136,6 +137,9 @@
             },
             goToLibrary(){
                 this.$router.push({name:'showBooks'})
+            },
+            goToTaskbar(){
+                this.$router.push({name:'taskbar'})
             }
         },
         created(){
