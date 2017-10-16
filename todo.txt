@@ -5,5 +5,9 @@ todo in create account =>
 3)student show account => all(class wise division) =====> solved :)
 4)name addition in principal & teacher =====> solved :)
 
+5)update detail - teacher student - toLowercase() =======> solved :)
+6)student detail / breakdown class wise
+7)Check del duplicate student id ========> solved :)
+
 
 

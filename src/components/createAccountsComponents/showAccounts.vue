@@ -1,6 +1,6 @@
 <template>
     <div>
-        <h1>show {{$route.params.whosAccount}} accounts</h1>
+        <h1>show {{checkWhosAccount}} accounts</h1>
 
         {{$route.params}}
 
@@ -16,11 +16,11 @@
 
             <!-- student -->
             <span v-show="$route.params.whosAccount == 'student' ">
-                <input v-model="account.std">
+                <input v-model="account.std" @keyup="changeTeacherCtStd(account, index)">
 
                 <!-- save -->
-                <button @click="saveAccount(account, index)">
-                     save
+                <button  v-show="account.showSave" @click="saveAccount(account, index)">
+                    save
                 </button>
             </span>
 
@@ -47,10 +47,11 @@
     export default {
         data(){
             return {
+                //vm : this,
                 accounts : [],
                 accountsCopy : [],
                 error : '',
-                showSave : []
+                whosAccount : ''
             }
         },
         methods:{
@@ -196,6 +197,13 @@
                 while(accountEmail.indexOf('.') != -1)
                     accountEmail = accountEmail.replace(".","replaceddothere")
 
+                if(vm.$route.params.whosAccount == 'student' ){
+                    account.std = account.std.toLowerCase()
+                }else if(vm.$route.params.whosAccount == 'teacher'){
+                    account.ctStd = account.ctStd.toLowerCase()
+                }
+
+
                 this.$store.state.db.db.ref('school/' + this.$route.params.schoolId + '/' + 'createdAccounts' + '/' +
                     this.$route.params.whosAccount + '/' + accountEmail).set(account)
                     .then(function(snapSchoolDet){
@@ -289,23 +297,40 @@
                     .on('value', function(snapTeacherCtStd){
                         //console.log(snapTeacherCtStd.val())
 
-                        //check
-                        if(snapTeacherCtStd.val().ctStd != account.ctStd){
-                            console.log('show !')
-                            vm.accountsCopy[index].showSave = true
-                            console.log(vm.accountsCopy[index].ctStd, ' => ', vm.accounts[index].ctStd)
-                        }else{
-                            vm.accountsCopy[index].showSave = false
-                            console.log(vm.accountsCopy[index].ctStd, ' => ', vm.accounts[index].ctStd)
+                        if(vm.$route.params.whosAccount == 'teacher'){
+                            //check
+                            if(snapTeacherCtStd.val().ctStd != account.ctStd){
+                                console.log('show !')
+                                vm.accountsCopy[index].showSave = true
+                                console.log(vm.accountsCopy[index].ctStd, ' => ', vm.accounts[index].ctStd)
+                            }else{
+                                vm.accountsCopy[index].showSave = false
+                                console.log(vm.accountsCopy[index].ctStd, ' => ', vm.accounts[index].ctStd)
+                            }
+                        }else if(vm.$route.params.whosAccount == 'student'){
+                            if(snapTeacherCtStd.val().std != account.std){
+                                console.log('show !')
+                                vm.accountsCopy[index].showSave = true
+                                console.log(vm.accountsCopy[index].std, ' => ', vm.accounts[index].std)
+                            }else{
+                                vm.accountsCopy[index].showSave = false
+                                console.log(vm.accountsCopy[index].std, ' => ', vm.accounts[index].std)
+                            }
                         }
                     })
             }
         },
-        created(){
-            this.checkIfUidIsLoaded()
+        computed:{
+            checkWhosAccount(){
+                this.whosAccount = this.$route.params.whosAccount
+                return this.whosAccount
+            }
         },
-        updated(){
-
+        watch:{
+            whosAccount: function(){
+                console.log('changed whos account !')
+                this.checkIfUidIsLoaded()
+            }
         }
     }
 </script>
