@@ -43,6 +43,8 @@ import readObjective from '@/components/objective/readObjective'
 //Image
 import uploadImage from '@/components/images/uploadImage'
 import seeImage from '@/components/images/seeImage'
+//Taskbar
+import taskbar from '@/components/taskbar/taskbar'
 Vue.use(Router)
 
 export default new Router({
@@ -73,7 +75,8 @@ export default new Router({
         { path: 'writeObjective' ,component:writeObjective, name:'writeObjective'},
         { path: 'readObjective' ,component:readObjective, name:'readObjective'},
         { path: 'uploadImage' ,component:uploadImage, name:'uploadImage'},
-        { path: 'seeImage' ,component:seeImage, name:'seeImage'}
+        { path: 'seeImage' ,component:seeImage, name:'seeImage'},
+        {path:'taskbar', component:taskbar , name:'taskbar'}
     ]},
     { path: '/createAccounts/:schoolId', component:createAccounts, children:[
         { path: 'createAccount/:whosAccount', name:'createAccount' ,component:createAccount},
