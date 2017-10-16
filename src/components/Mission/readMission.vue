@@ -2,7 +2,6 @@
     <div>
         <h1>Mission</h1>
         <span>{{mission}}</span>
-
     </div>
 </template>
 <script>

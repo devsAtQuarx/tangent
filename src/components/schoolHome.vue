@@ -80,7 +80,7 @@
         },
         methods:{
             goToCreateAccounts(){
-                this.$router.push('/createAccounts/' + this.$route.params.schoolId + '/' + 'principal')
+                this.$router.push('/createAccounts/' + this.$route.params.schoolId + '/createAccount/' + 'principal')
             },
             goToReadIntroduction(){
                 this.$router.push({name: 'readIntroduction'})

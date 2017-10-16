@@ -1,0 +1,9 @@
+todo in create account =>
+
+1)on deletion => update show teacher account page ======> solved :)
+2)link save button ======> solved :)
+3)student show account => all(class wise division) =====> solved :)
+4)name addition in principal & teacher =====> solved :)
+
+
+

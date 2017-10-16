@@ -15,6 +15,7 @@ import gLogin from '@/components/tangentHomeComponents/gLogin'
 //features
 //createAccountsComponents
 import createAccount from '@/components/createAccountsComponents/createAccount'
+import showAccounts from '@/components/createAccountsComponents/showAccounts'
 //attendance
 import setAttendance from '@/components/attendance/setAttendance'
 import showClassAttendance from '@/components/attendance/showClassAttendance'
@@ -73,7 +74,8 @@ export default new Router({
         { path: 'uploadImage' ,component:uploadImage, name:'uploadImage'}
     ]},
     { path: '/createAccounts/:schoolId', component:createAccounts, children:[
-        { path: ':whosAccount', name:'createAccount' ,component:createAccount}
+        { path: 'createAccount/:whosAccount', name:'createAccount' ,component:createAccount},
+        { path: 'showAccounts/:whosAccount', name: 'showAccounts' , component : showAccounts}
     ]}
   ]
 })
