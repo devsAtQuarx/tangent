@@ -4,6 +4,7 @@
 
         <!-- compulsory/common -->
         email:<input v-model="email">
+        name:<input v-model="name">
 
         <!-- teacher -->
         <span v-show="$route.params.whosAccount == 'teacher' ">
@@ -13,7 +14,6 @@
         <!-- student -->
         <span v-show="$route.params.whosAccount == 'student' ">
             std:<input  v-model="std">
-            name:<input v-model="name">
         </span>
 
         <!-- save-->
@@ -45,14 +45,16 @@
                 if(vm.$route.params.whosAccount == 'principal'){
                     tmpObj = {
                         email: vm.email.toLowerCase(),
-                        schoolId: vm.$route.params.schoolId
+                        schoolId: vm.$route.params.schoolId,
+                        name : vm.name.toLowerCase()
                     }
                 }
                 else if(vm.$route.params.whosAccount == 'teacher') {
                     tmpObj = {
                         email: vm.email.toLowerCase(),
                         schoolId: vm.$route.params.schoolId,
-                        ctStd: vm.ctStd.toLocaleLowerCase()
+                        ctStd: vm.ctStd.toLocaleLowerCase(),
+                        name : vm.name.toLowerCase()
                     }
                 }else if(vm.$route.params.whosAccount == 'student'){
                     tmpObj = {
@@ -64,8 +66,8 @@
                 }
 
                 if(this.validateEmail(this.email)){
-                    if((this.$route.params.whosAccount == 'student' && tmpObj.std != '') ||
-                        (this.$route.params.whosAccount != 'student')){
+                    if((this.$route.params.whosAccount == 'student' && tmpObj.std != '' && tmpObj.name != '' ) ||
+                        (this.$route.params.whosAccount != 'student' && tmpObj.name != '' )){
                         this.$store.state.db.db.ref('school/'+ this.$route.params.schoolId + '/createdAccounts/' +
                             this.$route.params.whosAccount + '/' + emailInDb)
                             .set(tmpObj) //set
@@ -97,8 +99,9 @@
 
                                                                 })
 
+                                                        }else{
+                                                            alert('teacher saved')
                                                         }
-
                                                     }else { //not null, already ct
 
                                                         console.log(snapCheckCtGet.val())
@@ -142,7 +145,7 @@
                                     })
                             })
                     }else{
-                        alert('empty std ! ')
+                        alert('empty std/name ! ')
                     }
                 }else{
                     alert('email is not valid/empty !')
