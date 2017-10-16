@@ -23,6 +23,7 @@
         <span @click="goToReadMission" >Read Mission</span>
         <span @click="goToReadVision" >Read Vision</span>
         <span @click="goToReadObjective" >Read Objective</span>
+        <span @click="goToSeeImage" >See Image</span>
         <!-- teacher option -->
         <span v-show="showTeacherOptions">
             <span @click="goToSetAttendance">set attendance</span>
@@ -96,6 +97,9 @@
             },
             goToReadVision(){
                 this.$router.push({name: 'readVision'})
+            },
+            goToSeeImage(){
+                this.$router.push({name: 'seeImage'})
             },
             goToSetAttendance(){
                 this.$router.push({name:'setAttendance'})

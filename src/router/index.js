@@ -41,6 +41,7 @@ import writeObjective from '@/components/objective/writeObjective'
 import readObjective from '@/components/objective/readObjective'
 //Image
 import uploadImage from '@/components/images/uploadImage'
+import seeImage from '@/components/images/seeImage'
 Vue.use(Router)
 
 export default new Router({
@@ -70,7 +71,8 @@ export default new Router({
         { path: 'readVision' ,component:readVision, name:'readVision'},
         { path: 'writeObjective' ,component:writeObjective, name:'writeObjective'},
         { path: 'readObjective' ,component:readObjective, name:'readObjective'},
-        { path: 'uploadImage' ,component:uploadImage, name:'uploadImage'}
+        { path: 'uploadImage' ,component:uploadImage, name:'uploadImage'},
+        { path: 'seeImage' ,component:seeImage, name:'seeImage'}
     ]},
     { path: '/createAccounts/:schoolId', component:createAccounts, children:[
         { path: ':whosAccount', name:'createAccount' ,component:createAccount}
