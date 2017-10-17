@@ -4,10 +4,9 @@ todo in create account =>
 2)link save button ======> solved :)
 3)student show account => all(class wise division) =====> solved :)
 4)name addition in principal & teacher =====> solved :)
-
 5)update detail - teacher student - toLowercase() =======> solved :)
 ///////////////////////////
-6)student detail / breakdown class wise
+6)student detail / breakdown class wise  =======> solved :)
  a1)limit to last 1 query students inside classDetail
  a2)Check student create & -
     b1) del - check limit last 1
@@ -16,6 +15,7 @@ todo in create account =>
  a4)onclick option -> fill array from class detail class
 ///////////////////////////
 7)Check del duplicate student id ========> solved :)
+8)Std array updated on edit student detail to reflect correctly on dom.
 
 
 

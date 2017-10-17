@@ -81,14 +81,20 @@
                 let vm = this
 
                 if(this.$route.params.whosAccount == 'student'){
-                    vm.$store.state.db.db.ref('checkClass/' + vm.$route.params.schoolId).once('value', function(snapClass){
-                        for(let i in snapClass.val()){
-                            vm.stds.push(snapClass.val()[i])
-                        }
-                    })
+                    vm.getStds()
                 }else{
                     this.finalGetAccounts()
                 }
+
+            },
+            getStds(){
+                this.stds = []
+                let vm = this
+                vm.$store.state.db.db.ref('checkClass/' + vm.$route.params.schoolId).once('value', function(snapClass){
+                    for(let i in snapClass.val()){
+                        vm.stds.push(snapClass.val()[i])
+                    }
+                })
 
             },
             finalGetAccounts(){
@@ -220,6 +226,7 @@
                             //donot delete from check class
 
                             ///////////////////////
+                            vm.getStds()
                             alert('deleted ')
                         }
                 })
@@ -230,6 +237,7 @@
                     .remove().then(function(snapDelCheck){
 
                     ///////////////////////
+                    vm.getStds()
                     alert('deleted ')
                 })
             },
@@ -340,7 +348,7 @@
             },
             removeClassFromCheckClassOnSave(account, index){
                 let vm = this
-                vm.$store.state.db.db.ref('classDetail/' + vm.$route.params.schoolId + '/' + vm.accounts[index].std)
+                vm.$store.state.db.db.ref('classDetail/' + vm.$route.params.schoolId + '/' + vm.accounts[index].std + '/student')
                     .limitToLast(1).once('value', function(snapCheckClass){  //check to remove
                     if(snapCheckClass.val() == null){
                         //del from check class
@@ -378,7 +386,8 @@
 
                     ///////////////////////
                     vm.accounts[index].std = account.std
-                    alert('changed')
+                    vm.getStds()
+                    alert('changed ****')
                 })
             },
             changeTeacherCtStd(account, index){
