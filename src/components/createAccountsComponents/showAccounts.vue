@@ -8,6 +8,13 @@
             {{error}}
         </span>
 
+
+
+        <li v-show="$route.params.whosAccount == 'student' " v-for="std in stds">
+            <span @click="selectStd(std)">{{std}}</span>
+        </li>
+
+
         <p v-for="(account, index) in accountsCopy">
             {{account}}
             <button @click="delAccount(account, index)">
@@ -16,6 +23,7 @@
 
             <!-- student -->
             <span v-show="$route.params.whosAccount == 'student' ">
+
                 <input v-model="account.std" @keyup="changeTeacherCtStd(account, index)">
 
                 <!-- save -->
@@ -51,7 +59,8 @@
                 accounts : [],
                 accountsCopy : [],
                 error : '',
-                whosAccount : ''
+                whosAccount : '',
+                stds : []
             }
         },
         methods:{
@@ -68,7 +77,23 @@
             getAccounts(){
                 this.accounts  = []
                 this.accountsCopy  = []
+                this.stds = []
                 let vm = this
+
+                if(this.$route.params.whosAccount == 'student'){
+                    vm.$store.state.db.db.ref('checkClass/' + vm.$route.params.schoolId).once('value', function(snapClass){
+                        for(let i in snapClass.val()){
+                            vm.stds.push(snapClass.val()[i])
+                        }
+                    })
+                }else{
+                    this.finalGetAccounts()
+                }
+
+            },
+            finalGetAccounts(){
+                let vm = this
+
                 this.$store.state.db.db.ref('school/' + this.$route.params.schoolId + '/' + 'createdAccounts' + '/' +
                     this.$route.params.whosAccount)
                     .once('value', function(snapAccounts){
@@ -179,9 +204,34 @@
                         vm.accountsCopy.splice(index, 1)
                         vm.checkIfArrIsEmpty()
 
-                        ///////////////////////
-                        alert('deleted ')
+                        vm.removeClassFromCheckClass(account)
                     })
+            },
+            removeClassFromCheckClass(account){
+                let vm = this
+                vm.$store.state.db.db.ref('classDetail/' + vm.$route.params.schoolId + '/' + account.std)
+                    .limitToLast(1).once('value', function(snapCheckClass){  //check to remove
+                        if(snapCheckClass.val() == null){
+                            //del from check class
+
+                            vm.finalRemoveCheckClass(account)
+                        }else{
+                            //do nothing
+                            //donot delete from check class
+
+                            ///////////////////////
+                            alert('deleted ')
+                        }
+                })
+            },
+            finalRemoveCheckClass(account){
+                let vm = this
+                vm.$store.state.db.db.ref('checkClass/' + vm.$route.params.schoolId + '/' + account.std)
+                    .remove().then(function(snapDelCheck){
+
+                    ///////////////////////
+                    alert('deleted ')
+                })
             },
             checkIfArrIsEmpty(){
                 if(this.accountsCopy.length == 0){
@@ -278,13 +328,58 @@
                             accountEmail).set(account) //problem
                         .then(function(snapTeacherClassDeatail){
 
+                            vm.removeClassFromCheckClassOnSave(account, index)
+
                             //*********************
-                            vm.accounts[index].std = account.std
-                            alert('changed !')
+                            //vm.accounts[index].std = account.std
+                            //alert('changed !')
 
                         })
 
                     })
+            },
+            removeClassFromCheckClassOnSave(account, index){
+                let vm = this
+                vm.$store.state.db.db.ref('classDetail/' + vm.$route.params.schoolId + '/' + vm.accounts[index].std)
+                    .limitToLast(1).once('value', function(snapCheckClass){  //check to remove
+                    if(snapCheckClass.val() == null){
+                        //del from check class
+                        alert('null del')
+                        vm.finalRemoveCheckClassOnSave(account, index)
+                    }else{
+                        //do nothing
+                        //donot delete from check class
+
+                        alert('not null, not del')
+                        vm.addNewCheckClass(account, index)
+                        ///////////////////////
+                        //vm.accounts[index].std = account.std
+                        //alert('changed')
+                    }
+                })
+            },
+            finalRemoveCheckClassOnSave(account, index){
+                let vm = this
+                vm.$store.state.db.db.ref('checkClass/' + vm.$route.params.schoolId + '/' + vm.accounts[index].std)
+                    .remove().then(function(snapDelCheck){
+
+                    ///////////////////////
+                    //alert('changed')
+                    vm.addNewCheckClass(account, index)
+                })
+            },
+            addNewCheckClass(account, index){
+                let vm = this
+                vm.$store.state.db.db.ref('checkClass/' + vm.$route.params.schoolId + '/' + account.std)
+                    .set({
+                        schoolId : vm.$route.params.schoolId,
+                        std : account.std
+                    }).then(function(snapDelCheck){
+
+                    ///////////////////////
+                    vm.accounts[index].std = account.std
+                    alert('changed')
+                })
             },
             changeTeacherCtStd(account, index){
                 let vm = this
@@ -315,6 +410,37 @@
                             }else{
                                 vm.accountsCopy[index].showSave = false
                                 console.log(vm.accountsCopy[index].std, ' => ', vm.accounts[index].std)
+                            }
+                        }
+                    })
+            },
+            selectStd(std){
+                console.log(std)
+                this.finalGetStudentAccounts(std)
+            },
+            finalGetStudentAccounts(std){
+                this.accounts  = []
+                this.accountsCopy  = []
+                let vm = this
+
+                this.$store.state.db.db.ref('classDetail/' + this.$route.params.schoolId + '/' + std.std + '/student')
+                    .once('value', function(snapAccounts){
+                        console.log(snapAccounts.val())
+                        if(snapAccounts.val() == null){
+                            vm.error = 'no accounts !'
+                            vm.accounts = {}
+                        }else{
+                            vm.error = ''
+
+                            let c = 0
+                            for(let i in snapAccounts.val()){
+                                vm.accounts.push(snapAccounts.val()[i])
+                                vm.accountsCopy.push(snapAccounts.val()[i])
+
+                                vm.accounts[c].showSave = false
+                                vm.accountsCopy[c].showSave = false
+
+                                c++
                             }
                         }
                     })
