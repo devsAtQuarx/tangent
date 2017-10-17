@@ -27,7 +27,10 @@ new Vue({
           } else {
               console.log('Not LoggedIn')
               store.state.auth.isLoggedIn = false
-              this.$router.push('/')
+              this.$router.push({name: 'tangentHome', params:{
+                    whoIsLoggedIn : 'notLoggedIn'
+                }
+              })
           }
       });
   },

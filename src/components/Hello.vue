@@ -1,6 +1,8 @@
 <template>
   <div class="hello">
 
+    {{$route.params}}
+
     <!--options-->
     <span @click="goToTangentHome">Home</span>
     <span @click="goToTangentContact">Contact</span>
@@ -17,13 +19,22 @@ export default {
   name: 'hello',
   methods:{
     goToTangentHome(){
-      this.$router.push('/')
+        this.$router.push({name : 'tangentHome' , params: {
+            whoisLoggedIn : this.$route.params.whoisLoggedIn
+        }
+        })
     },
     goToTangentContact(){
-      this.$router.push('/tangentContact')
+      this.$router.push({name : 'tangentContact' , params: {
+          whoisLoggedIn : this.$route.params.whoisLoggedIn
+        }
+      })
     },
     goToTangentAbout(){
-      this.$router.push('/tangentAbout')
+        this.$router.push({name : 'tangentAbout' , params: {
+            whoisLoggedIn : this.$route.params.whoisLoggedIn
+        }
+        })
     }
   }
 }

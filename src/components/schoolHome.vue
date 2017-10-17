@@ -44,7 +44,7 @@
         </span>
 
         <div>
-            {{user}}
+            <!--{{user}}-->
             <router-view></router-view>
         </div>
     </div>

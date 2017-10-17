@@ -11,16 +11,22 @@
         <p @click="studentLogin">I am Student</p>
         <!--p @click="parentLogin">I am Parent</p-->
 
+        <p @click="act" v-show="isLoggedIn">goToSchoolHome</p>
+
+        <p v-show="showLoader">loading ...</p>
+
     </div>
 </template>
 
 <script>
     import firebase from 'firebase'
+    import {mapGetters} from 'vuex'
 
     export default {
         data(){
           return {
-              whoIsLoggedIn : ''
+              whoIsLoggedIn : '',
+              showLoader : false
           }
         },
         methods:{
@@ -50,8 +56,8 @@
 
             },
             gSignIn(){
+                let vm = this
                 if(!this.$store.state.auth.isLoggedIn) {
-                    let vm = this
                     var provider = new firebase.auth.GoogleAuthProvider()
                     firebase.auth().signInWithRedirect(provider)
                     firebase.auth().getRedirectResult().then(function (result) {
@@ -61,7 +67,11 @@
                             console.log(token)
                             // ...
                         }
-                        vm.$router.push('gLogin/' + vm.whoIsLoggedIn)
+                        //vm.$router.push('gLogin/' + vm.whoIsLoggedIn)
+                        vm.$router.push({name: 'tangentHome', params:{
+                                whoIsLoggedIn: vm.whoIsLoggedIn
+                            }
+                        })
                         // The signed-in user info.
                         var user = result.user;
                     }).catch(function (error) {
@@ -76,9 +86,90 @@
                         // ...
                     });
                 }else{
-                    this.$router.push('gLogin/' + this.whoIsLoggedIn)
+                    alert('already logged in as => ' + vm.$route.params.whoIsLoggedIn + ' log out first to log in again ! ')
                 }
             },
+            act(){
+                let vm = this
+                //console.log(this.$route.params)
+                let  userEmail = vm.$store.state.auth.user.email
+                while(userEmail.indexOf('.') != -1)
+                    userEmail = userEmail.replace(".","replaceddothere")
+
+                if(this.$route.params.whoIsLoggedIn == 'school') { //schoolLoggedIn /**************
+                    //this.$store.state.auth.schoolId = this.$store.state.auth.user.uid
+                    //route
+                    this.$router.push({
+                        name : 'schoolHome',
+                        params:{
+                            schoolId: this.$store.state.auth.user.uid,
+                            whoIsLoggedIn: this.$route.params.whoIsLoggedIn
+                        }
+                    })
+                }else{ //not school LoggedIn /***************
+
+                    this.$store.state.db.db.ref('createdAccounts/' + this.$route.params.whoIsLoggedIn + '/' + userEmail)
+                        .once('value', function (snapCheckUid) {
+                            console.log(snapCheckUid.val(), userEmail)
+                            if(snapCheckUid.val() == null){
+                                alert('not ok')
+                                vm.gSignOut()
+                            }
+                            else if (snapCheckUid.val().email == vm.$store.state.auth.user.email) {
+                                alert('ok')
+                                //route
+                                vm.$router.push({
+                                    name : 'schoolHome',
+                                    params:{
+                                        schoolId: snapCheckUid.val().schoolId,
+                                        whoIsLoggedIn: vm.$route.params.whoIsLoggedIn
+                                    }
+                                })
+
+                            } else {
+                                alert('not ok')
+                                vm.gSignOut()
+                            }
+                        })
+                }
+            },
+            //checkIfUidIsLoaded
+            checkIfUidIsLoaded(){ //recursive
+                console.log('checkIfUidIsLoaded')
+                if(!this.$store.state.auth.isLoggedIn){ //stillNotLoggedIn
+                    setTimeout(()=>{
+                        this.checkIfUidIsLoaded() // call again after 1 sec
+                    },1000)
+                }else{ //loggedIn
+                    this.act()
+                }
+            },
+            gSignOut(){
+                firebase.auth().signOut().then(function() {
+                    // Sign-out successful.
+                    console.log("Sucessfully Logged Out")
+                }).catch(function(error) {
+                    // An error happened.
+                    console.log("Failed to LogOut", error)
+                });
+            },
+        },
+        computed:{
+            ...mapGetters([
+                'isLoggedIn','user'
+            ])
+        },
+        watch:{
+            isLoggedIn: function(){
+                if(this.$store.state.auth.isLoggedIn){
+                    this.checkIfUidIsLoaded()
+                }
+            }
+        },
+        created(){
+            if(this.$route.params.whoIsLoggedIn != 'notLoggedIn' && this.$store.state.auth.isLoggedIn == false){
+                this.showLoader = true
+            }
         }
     }
 </script>
