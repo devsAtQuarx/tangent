@@ -17,7 +17,7 @@
         </span>
 
         <!-- save-->
-        <button @click="saveEmail">save</button>
+        <button @click="saveEmailBindObj">save</button>
     </div>
 </template>
 
@@ -32,7 +32,7 @@
             }
         },
         methods:{
-            saveEmail(){
+            saveEmailBindObj(){
                 let vm = this
                 let emailInDb = vm.email
                 while(emailInDb.indexOf('.') != -1)
@@ -69,29 +69,19 @@
                     if((this.$route.params.whosAccount == 'student' && tmpObj.std != '' && tmpObj.name != '' ) ||
                         (this.$route.params.whosAccount != 'student' && tmpObj.name != '' )){
 
-                        vm.$store.state.db.db.ref('school/'+ vm.$route.params.schoolId + '/createdAccounts/' +
-                            vm.$route.params.whosAccount + '/' + emailInDb).once('value', function(snapCheckcheckDuplicateVar){
 
-                            let checkDuplicateVar//, checkStudentOldClass
-                            if(snapCheckcheckDuplicateVar.val() != null){
-                                if(vm.$route.params.whosAccount == 'student') {
-                                    checkDuplicateVar = snapCheckcheckDuplicateVar.val().email
-                                    //checkStudentOldClass = snapCheckcheckDuplicateVar.val().std
-                                }
-                                else if(vm.$route.params.whosAccount == 'teacher')
-                                    checkDuplicateVar = snapCheckcheckDuplicateVar.val().email
-                                else if(vm.$route.params.whosAccount == 'principal')
-                                    checkDuplicateVar = snapCheckcheckDuplicateVar.val().email
-                            }
-
-                            //console.log('old class => ', checkStudentOldClass)
-                            if(checkDuplicateVar != undefined){ //duplicate
-                                alert('overwritting not allowed here !')
-                            }else{ //1st time
-                                vm.finalSave(emailInDb, tmpObj, checkDuplicateVar) //ok save
-                            }
-                        })
-
+                        if(this.$route.params.whosAccount == 'principal'){ //principal
+                            vm.$store.state.db.db.ref('school/' + vm.$route.params.schoolId + '/' + '/createdAccounts/' +
+                                vm.$route.params.whosAccount).once('value',function(snapCheckIfOnlyOnePrincipal){
+                                    if(snapCheckIfOnlyOnePrincipal.val() == null){
+                                        vm.saveEmail(tmpObj, emailInDb)
+                                    }else{
+                                        alert('only one principal account is permitted !')
+                                    }
+                            })
+                        }else{ //other than principal
+                            vm.saveEmail(tmpObj, emailInDb)
+                        }
                     }else{
                         alert('empty std/name ! ')
                     }
@@ -99,7 +89,31 @@
                     alert('email is not valid/empty !')
                 }
             },
+            saveEmail(tmpObj, emailInDb){
+                let vm = this
+                vm.$store.state.db.db.ref('school/'+ vm.$route.params.schoolId + '/createdAccounts/' +
+                    vm.$route.params.whosAccount + '/' + emailInDb).once('value', function(snapCheckcheckDuplicateVar){
 
+                    let checkDuplicateVar//, checkStudentOldClass
+                    if(snapCheckcheckDuplicateVar.val() != null){
+                        if(vm.$route.params.whosAccount == 'student') {
+                            checkDuplicateVar = snapCheckcheckDuplicateVar.val().email
+                            //checkStudentOldClass = snapCheckcheckDuplicateVar.val().std
+                        }
+                        else if(vm.$route.params.whosAccount == 'teacher')
+                            checkDuplicateVar = snapCheckcheckDuplicateVar.val().email
+                        else if(vm.$route.params.whosAccount == 'principal')
+                            checkDuplicateVar = snapCheckcheckDuplicateVar.val().email
+                    }
+
+                    //console.log('old class => ', checkStudentOldClass)
+                    if(checkDuplicateVar != undefined){ //duplicate
+                        alert('overwritting not allowed here !')
+                    }else{ //1st time
+                        vm.finalSave(emailInDb, tmpObj, checkDuplicateVar) //ok save
+                    }
+                })
+            },
             finalSave(emailInDb, tmpObj, checkDuplicateVar){
 
                 let vm = this

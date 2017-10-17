@@ -11,7 +11,7 @@
 
 
         <li v-show="$route.params.whosAccount == 'student' " v-for="std in stds">
-            <span @click="selectStd(std)">{{std}}</span>
+            <span @click="selectStd(std)">{{std.std}}</span>
         </li>
 
 
@@ -352,13 +352,13 @@
                     .limitToLast(1).once('value', function(snapCheckClass){  //check to remove
                     if(snapCheckClass.val() == null){
                         //del from check class
-                        alert('null del')
+                        //alert('null del')
                         vm.finalRemoveCheckClassOnSave(account, index)
                     }else{
                         //do nothing
                         //donot delete from check class
 
-                        alert('not null, not del')
+                        //alert('not null, not del')
                         vm.addNewCheckClass(account, index)
                         ///////////////////////
                         //vm.accounts[index].std = account.std
