@@ -7,17 +7,17 @@
         <span @click="goToCreatePrincipalAccount()">Create Principal's Account</span>
         <span @click="goToShowPrincipalAccount()">Show Principal's Account</span>
 
-        <span @click="goToCreateVpAccount()">Create Vice-Principal's Account</span>
+        <!--span @click="goToCreateVpAccount()">Create Vice-Principal's Account</span-->
 
         <span @click="goToCreateTeacherAccount()">Create Teacher's Account</span>
         <span @click="goToShowTeacherAccount()">Show Teacher's Accounts</span>
 
-        <span @click="goToCreateAccountantAccount()">Create Accountant's Account</span>
+        <!--span @click="goToCreateAccountantAccount()">Create Accountant's Account</span-->
 
         <span @click="goToCreateStudentAccount()">Create Student's Account</span>
         <span @click="goToShowStudentAccount()">Show Student's Accounts</span>
 
-        <span @click="goToCreateParentAccount()">Create Parent's Account</span>
+        <!--span @click="goToCreateParentAccount()">Create Parent's Account</span-->
 
         <!--content-->
         <router-view></router-view>
