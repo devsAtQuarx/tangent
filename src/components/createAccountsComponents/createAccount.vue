@@ -8,7 +8,7 @@
 
         <!-- teacher -->
         <span v-show="$route.params.whosAccount == 'teacher' ">
-            ctStd:<input  v-model="ctStd">
+            <!-- ctStd:<input  v-model="ctStd"> -->
         </span>
 
         <!-- student -->
@@ -53,7 +53,7 @@
                     tmpObj = {
                         email: vm.email.toLowerCase(),
                         schoolId: vm.$route.params.schoolId,
-                        ctStd: vm.ctStd.toLocaleLowerCase(),
+                        //ctStd: vm.ctStd.toLocaleLowerCase(),
                         name : vm.name.toLowerCase()
                     }
                 }else if(vm.$route.params.whosAccount == 'student'){
@@ -65,6 +65,7 @@
                     }
                 }
 
+                //validation
                 if(this.validateEmail(this.email)){
                     if((this.$route.params.whosAccount == 'student' && tmpObj.std != '' && tmpObj.name != '' ) ||
                         (this.$route.params.whosAccount != 'student' && tmpObj.name != '' )){
@@ -88,6 +89,7 @@
                 }else{
                     alert('email is not valid/empty !')
                 }
+
             },
             saveEmail(tmpObj, emailInDb){
                 let vm = this
@@ -114,6 +116,7 @@
                     }
                 })
             },
+            //final save :)
             finalSave(emailInDb, tmpObj, checkDuplicateVar){
 
                 let vm = this
@@ -129,7 +132,7 @@
 
                                 if(vm.$route.params.whosAccount == 'teacher' ){ /////// teacher
                                     //post normally
-                                    if(tmpObj.ctStd != ''){ //ctStd != ''
+                                    /*if(tmpObj.ctStd != ''){ //ctStd != ''
                                         vm.$store.state.db.db.ref('classDetail/'+ vm.$route.params.schoolId + '/' + tmpObj.ctStd +'/ct/' +
                                             emailInDb).set(tmpObj)
                                             .then(function(snapClassDeatail){
@@ -141,9 +144,10 @@
 
                                             })
 
-                                    }else{
+                                    }else{*/
                                         alert('teacher saved')
-                                    }
+                                    //}
+                                    //teacher ends
                                 }else if(vm.$route.params.whosAccount == 'student'){ ////// student
                                     vm.$store.state.db.db.ref('classDetail/'+ vm.$route.params.schoolId + '/' + tmpObj.std +'/student/' +
                                         emailInDb).set(tmpObj)

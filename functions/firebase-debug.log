@@ -1,0 +1,36 @@
+[debug] [2017-10-17T15:31:22.066Z] ----------------------------------------------------------------------
+[debug] [2017-10-17T15:31:22.071Z] Command:       /usr/local/bin/node /usr/local/bin/firebase deploy
+[debug] [2017-10-17T15:31:22.072Z] CLI Version:   3.11.0
+[debug] [2017-10-17T15:31:22.072Z] Platform:      darwin
+[debug] [2017-10-17T15:31:22.072Z] Node Version:  v6.11.3
+[debug] [2017-10-17T15:31:22.073Z] Time:          Tue Oct 17 2017 21:01:22 GMT+0530 (IST)
+[debug] [2017-10-17T15:31:22.073Z] ----------------------------------------------------------------------
+[debug] 
+[debug] [2017-10-17T15:31:22.108Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2017-10-17T15:31:22.108Z] > authorizing via signed-in user
+[debug] [2017-10-17T15:31:22.113Z] >>> HTTP REQUEST GET https://admin.firebase.com/v1/projects/tangent-schools  
+ Tue Oct 17 2017 21:01:22 GMT+0530 (IST)
+[debug] [2017-10-17T15:31:23.426Z] <<< HTTP RESPONSE 200
+[debug] [2017-10-17T15:31:23.428Z] >>> HTTP REQUEST GET https://admin.firebase.com/v1/database/tangent-schools/tokens  
+ Tue Oct 17 2017 21:01:23 GMT+0530 (IST)
+[debug] [2017-10-17T15:31:24.539Z] <<< HTTP RESPONSE 200
+[info] 
+[info] === Deploying to 'tangent-schools'...
+[info] 
+[info] i  deploying database, functions, hosting
+[info] ✔  database: rules ready to deploy.
+[debug] [2017-10-17T15:31:27.656Z] > [functions] package.json contents: {
+  "name": "functions",
+  "description": "Cloud Functions for Firebase",
+  "dependencies": {
+    "firebase-admin": "~5.2.1",
+    "firebase-functions": "^0.6.2"
+  },
+  "private": true
+}
+[info] i  functions: ensuring necessary APIs are enabled...
+[info] i  runtimeconfig: ensuring necessary APIs are enabled...
+[debug] [2017-10-17T15:31:27.659Z] >>> HTTP REQUEST GET https://servicemanagement.googleapis.com/v1/services/cloudfunctions.googleapis.com/projectSettings/tangent-schools?view=CONSUMER_VIEW  
+ Tue Oct 17 2017 21:01:27 GMT+0530 (IST)
+[debug] [2017-10-17T15:31:27.660Z] >>> HTTP REQUEST GET https://servicemanagement.googleapis.com/v1/services/runtimeconfig.googleapis.com/projectSettings/tangent-schools?view=CONSUMER_VIEW  
+ Tue Oct 17 2017 21:01:27 GMT+0530 (IST)

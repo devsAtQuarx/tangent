@@ -24,7 +24,7 @@
             <!-- student -->
             <span v-show="$route.params.whosAccount == 'student' ">
 
-                <input v-model="account.std" @keyup="changeTeacherCtStd(account, index)">
+                <input v-model="account.std" @keyup="reactOnChange(account, index)">
 
                 <!-- save -->
                 <button  v-show="account.showSave == true && account.std != '' " @click="saveAccount(account, index)">
@@ -34,12 +34,12 @@
 
             <!-- teacher -->
             <span v-show="$route.params.whosAccount == 'teacher' ">
-                <input v-model="account.ctStd" @keyup="changeTeacherCtStd(account, index)">
+                <!--input v-model="account.ctStd" @keyup="changeTeacherCtStd(account, index)"-->
 
                 <!-- save -->
-                <button  v-show="account.showSave" @click="saveAccount(account, index)">
+                <!--button  v-show="account.showSave" @click="saveAccount(account, index)">
                     save
-                </button>
+                </button-->
             </span>
 
             <!-- principal -->
@@ -145,19 +145,17 @@
                         //if teacher
                         if(vm.$route.params.whosAccount == 'teacher') {
                             //check if class teacher
-                            vm.checkIfCt(account, index, accountEmail)
+                            //vm.checkIfCt(account, index, accountEmail)
+                            vm.finalDel(account, index)
                         }else if(vm.$route.params.whosAccount == 'principal'){ //principal
-                            console.log('before scplice =>', vm.accountsCopy)
-                            console.log('index => ', index)
+                            //console.log('before scplice =>', vm.accountsCopy)
+                            //console.log('index => ', index)
 
-                            vm.accounts.splice(index, 1)
-                            vm.accountsCopy.splice(index, 1)
-                            vm.checkIfArrIsEmpty()
+                            //console.log('after scplice =>',vm.accountsCopy)
 
-                            console.log('after scplice =>',vm.accountsCopy)
+                            vm.finalDel(account, index)
 
                             ////////////////////////
-                            alert('deleted !')
                         }else if(vm.$route.params.whosAccount == 'student'){
                             vm.removeStudentFromClassDetail(account, index, accountEmail)
                         }
@@ -166,7 +164,14 @@
                 })
 
             },
-            delTeacherDetail(account, index, accountEmail){
+            finalDel(account, index){
+                let vm = this
+                vm.accounts.splice(index, 1)
+                vm.accountsCopy.splice(index, 1)
+                vm.checkIfArrIsEmpty()
+                alert('deleted !')
+            },
+            /*delTeacherDetail(account, index, accountEmail){
                 let vm = this
                 console.log('classDetail/' + this.$route.params.schoolId + '/' + vm.accounts[index].ctStd + 'ct' + '/' +
                     accountEmail)
@@ -183,8 +188,8 @@
                             alert('deleted !')
                         })
                 })
-            },
-            checkIfCt(account, index, accountEmail){
+            },*/
+            /*checkIfCt(account, index, accountEmail){
                 let vm = this
                 //this.$store.state.db.db.ref('checkCt' + this.$route.params.schoolId + '/' + accountEmail)
                     //.once('value', function(snapCheckIfCt){
@@ -200,7 +205,7 @@
                             vm.delTeacherDetail(account, index, accountEmail)
                         }
                     //})
-            },
+            },*/
             removeStudentFromClassDetail(account, index, accountEmail){
                 let vm = this
                 this.$store.state.db.db.ref('classDetail/' + this.$route.params.schoolId + '/' + account.std + '/' +
@@ -279,7 +284,7 @@
                     })
 
             },
-            updateTeacherAcc(account, index, accountEmail){
+            /*updateTeacherAcc(account, index, accountEmail){
                 let vm = this
                 if(account.ctStd != '' ){ //ct
 
@@ -320,7 +325,7 @@
                                 })
                         })
                 }
-            },
+            },*/
             updateStudentAcc(account, index, accountEmail){
                 let vm = this
 
@@ -390,7 +395,7 @@
                     alert('changed ****')
                 })
             },
-            changeTeacherCtStd(account, index){
+            reactOnChange(account, index){
                 let vm = this
 
                 let accountEmail = account.email

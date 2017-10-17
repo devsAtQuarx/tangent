@@ -15,7 +15,34 @@ todo in create account =>
  a4)onclick option -> fill array from class detail class
 ///////////////////////////
 7)Check del duplicate student id ========> solved :)
-8)Std array updated on edit student detail to reflect correctly on dom.
+8)Std array updated on edit student detail to reflect correctly on dom. ==> solved :)
+
+/*********************************************************************************/
+
+=> assign subjects to teacher by principal
+
+
+ /*** ONLINE TEST STARTS ***/
+9) teacher can create online test, inside class
+10) respective class stduent can see that test
+
+//feature in test :
+
+11)student can mark right option & finally submit
+12) once submitted cant be resubmitted , will query/show correct options/their option
+
+//key feature
+
+13)a timer starts on start of test ? how ? set time when test is opened in db.
+14)end test automatically when time ends from that time
+
+//necessary
+
+15)show live time change on time on dom
+
+/*** ONLINE TEST ENDS ****/
+
+/*********************************************************************************/
 
 
 

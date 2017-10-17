@@ -5,11 +5,11 @@
         <!--content-->
         <p @click="schoolLogin">I am School</p>
         <p @click="principalLogin">I am Principal</p>
-        <p @click="vpLogin">I am Vice-principal</p>
+        <!--p @click="vpLogin">I am Vice-principal</p-->
         <p @click="teacherlogin">I am Teacher</p>
-        <p @click="accountantLogin">I am Accountant</p>
+        <!--p @click="accountantLogin">I am Accountant</p-->
         <p @click="studentLogin">I am Student</p>
-        <p @click="parentLogin">I am Parent</p>
+        <!--p @click="parentLogin">I am Parent</p-->
 
     </div>
 </template>
