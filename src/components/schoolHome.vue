@@ -15,6 +15,7 @@
             <span @click="goToWriteVision">Write Vision</span>
             <span @click="goToWriteObjective">Write Objective</span>
             <span @click="goToUploadImage">Upload Image</span>
+            <span @click="goToAddBulletins">Add Bulletins</span>
         </span>
 
         <br>
@@ -25,6 +26,7 @@
         <span @click="goToReadObjective" >Read Objective</span>
         <span @click="goToSeeImage" >See Image</span>
         <span @click="goToTaskbar">Taskbar</span>
+        <span @click="goToSeeBulletins">See Bulletins</span>
         <!-- teacher option -->
         <span v-show="showTeacherOptions">
             <span @click="goToSetAttendance">set attendance</span>
@@ -86,6 +88,12 @@
             },
             goToReadIntroduction(){
                 this.$router.push({name: 'readIntroduction'})
+            },
+            goToAddBulletins(){
+                this.$router.push({name: 'addBulletins'})
+            },
+            goToSeeBulletins(){
+                this.$router.push({name: 'seeBulletins'})
             },
             goToReadObjective(){
                 this.$router.push({name: 'readObjective'})

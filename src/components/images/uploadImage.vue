@@ -1,12 +1,7 @@
 <template>
     <div>
         <h1>Upload Image</h1>
-        <input
-                class="hide_file"
-                type="file"
-                @change="uploadFile($event)"
-        >
-
+        <input type="file" @change="uploadFile($event)">
         <span v-for="(photo,i) in photos"  >
         <!--  {{photo.photoObj.name}} -->
           <img :src="photo.photoUrl" id="uploaded_photo"style="height:170px;width:175px;" >
@@ -48,14 +43,19 @@
             //uploadFile
             uploadFile(event){
                 console.log(event.target.files[0])
-                console.log(URL.createObjectURL(event.target.files[0]))
-                let tempPhotoObj = {
-                    photoObj : event.target.files[0],
-                    photoUrl : URL.createObjectURL(event.target.files[0])
-                }
-                this.photos.push(tempPhotoObj)
+                //console.log(URL.createObjectURL(event.target.files[0]))
+                if (event.target.files[0] != undefined){
+                    let tempPhotoObj = {
+                        photoObj : event.target.files[0],
+                        photoUrl : URL.createObjectURL(event.target.files[0])
+                    }
+                    this.photos.push(tempPhotoObj)
 
-                this.event.photoUrl.push(tempPhotoObj.photoUrl.slice(tempPhotoObj.photoUrl.lastIndexOf('/')+1))
+                    this.event.photoUrl.push(tempPhotoObj.photoUrl.slice(tempPhotoObj.photoUrl.lastIndexOf('/')+1))
+                }else{
+                    console.log("photo not selected")
+                }
+
             },
             removePhoto(index){
                 //console.log(index)

@@ -45,6 +45,9 @@ import uploadImage from '@/components/images/uploadImage'
 import seeImage from '@/components/images/seeImage'
 //Taskbar
 import taskbar from '@/components/taskbar/taskbar'
+//Bulletin Board
+import addBulletins from '@/components/bulletinBoard/addBulletins'
+import seeBulletins from '@/components/bulletinBoard/seeBulletins'
 Vue.use(Router)
 
 export default new Router({
@@ -76,7 +79,9 @@ export default new Router({
         { path: 'readObjective' ,component:readObjective, name:'readObjective'},
         { path: 'uploadImage' ,component:uploadImage, name:'uploadImage'},
         { path: 'seeImage' ,component:seeImage, name:'seeImage'},
-        {path:'taskbar', component:taskbar , name:'taskbar'}
+        {path:'taskbar', component:taskbar , name:'taskbar'},
+        {path:'addBulletins', component:addBulletins ,name:'addBulletins'},
+        {path:'seeBulletins', component:seeBulletins ,name:'seeBulletins'}
     ]},
     { path: '/createAccounts/:schoolId', component:createAccounts, children:[
         { path: 'createAccount/:whosAccount', name:'createAccount' ,component:createAccount},

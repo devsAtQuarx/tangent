@@ -7,8 +7,8 @@
             <button @click="changeWorkStatus(todo)">{{todo.status}}</button>
             <button @click="removeTask(todo)">X</button>
         </div>
-        <input type="text" v-model="headline" v-show="showInput">
-        <input type="text" v-model="content" v-show="showInput">
+        <input type="text" v-model="headline" v-show="showInput" placeholder="headline">
+        <input type="text" v-model="content" v-show="showInput" placeholder="content">
         <button @click="submitToDb" v-show="showInput">Submit</button>
         <h4 v-show="noTodo">Click the + button to add TASKS </h4>
         <button @click="addTask" v-show="!showInput">+</button>
