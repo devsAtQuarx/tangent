@@ -6,6 +6,7 @@ todo in create account =>
 4)name addition in principal & teacher =====> solved :)
 
 5)update detail - teacher student - toLowercase() =======> solved :)
+///////////////////////////
 6)student detail / breakdown class wise
  a1)limit to last 1 query students inside classDetail
  a2)Check student create & -
@@ -13,6 +14,7 @@ todo in create account =>
     b2)update - check limit last 1
  a3)query checkStd option
  a4)onclick option -> fill array from class detail class
+///////////////////////////
 7)Check del duplicate student id ========> solved :)
 
 

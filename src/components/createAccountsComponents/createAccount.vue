@@ -134,7 +134,17 @@
                                     vm.$store.state.db.db.ref('classDetail/'+ vm.$route.params.schoolId + '/' + tmpObj.std +'/student/' +
                                         emailInDb).set(tmpObj)
                                         .then(function(snapClassDeatail){
-                                            alert('saved email in db !') //***********
+
+                                            //*** check class ***/
+                                            vm.$store.state.db.db.ref('checkClass/' + vm.$route.params.schoolId + '/' +
+                                                tmpObj.std).set({
+                                                schoolId : vm.$route.params.schoolId,
+                                                std : tmpObj.std
+                                            }).then(function(snapCheckStudent){
+                                                alert('saved email in db !') //***********
+                                            })
+                                            //*** check class ends ***/
+
                                         })
                                 }else{ /////// else means principal
                                     alert('saved email in db !') //*************
